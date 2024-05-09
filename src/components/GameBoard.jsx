@@ -1,13 +1,18 @@
 import { Tile } from "./Tile";
+import { generateRandomId } from "../utils/utils";
 
-export const GameBoard = ({ numTiles }) => {
-  function createTiles(input) {
+function GameBoard({ numTiles }) {
+  function createTiles() {
     let tileArr = [];
-    for (let i = 0; i < input * input; i++) {
-      tileArr.push(<Tile />);
+    for (let i = 0; i < numTiles; i++) {
+      let id = generateRandomId();
+
+      tileArr.push(<Tile key={id} index={i} isFlashing={true} />);
     }
     return tileArr;
   }
 
-  return <div className="container">{createTiles(numTiles)}</div>;
-};
+  return <div className="container">{createTiles()}</div>;
+}
+
+export default GameBoard;

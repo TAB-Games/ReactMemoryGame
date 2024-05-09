@@ -1,6 +1,12 @@
-import generateRandomId from "../utils/utils";
+export const Tile = (key, index, isFlashing) => {
+  function handleTileClick() {
+    // check if it is correct tile in array sequence
+    // need to compare with global state ...redux toolkit ?
+    return "eggs";
+  }
+  isFlashing = false;
 
-export const Tile = () => {
-  let id = generateRandomId();
-  return <div className="tile" key={id}></div>;
+  return (
+    <div key={key} className={`tile ${isFlashing ? "flashing" : ""}`}></div>
+  );
 };
