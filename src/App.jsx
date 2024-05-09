@@ -8,16 +8,17 @@ import {
   CurrentSequenceProvider,
   useCurrentSequence,
 } from "./components/CurrentSequenceContext";
+import { GameProvider } from "./components/GameProvider";
 
 function App() {
   return (
     <div>
       <h1>Memorization Station</h1>
-      <CurrentSequenceProvider>
-        {/* <Score value={score} /> */}
+      <GameProvider>
+        <Score />
         <GameBoard />
         <PlayBtn />
-      </CurrentSequenceProvider>
+      </GameProvider>
     </div>
   );
 }

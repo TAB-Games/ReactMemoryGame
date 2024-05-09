@@ -1,8 +1,8 @@
-import { useCurrentSequence } from "./CurrentSequenceContext";
+import { useGame } from "./GameProvider";
 import { generateRandomSequence } from "../utils/utils";
 
 export const PlayBtn = () => {
-  const { currentSequence, setCurrentSequence } = useCurrentSequence();
+  const { setCurrentSequence } = useGame();
 
   function handlePlay() {
     setCurrentSequence(generateRandomSequence(2, 4));
