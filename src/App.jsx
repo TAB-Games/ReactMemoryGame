@@ -5,7 +5,7 @@ import { PlayBtn } from "./components/PlayBtn";
 import Score from "./components/Score";
 import { generateRandomSequence } from "./utils/utils";
 
-import { GameProvider } from "./components/GameProvider";
+import GameProvider from "./context/GameProvider";
 
 function App() {
   return (

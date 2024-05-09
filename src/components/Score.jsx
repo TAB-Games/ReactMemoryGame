@@ -1,5 +1,5 @@
 import React from "react";
-import { useGame } from "./GameProvider";
+import { useGame } from "../context/GameProvider";
 
 function Score() {
   const { score } = useGame();
