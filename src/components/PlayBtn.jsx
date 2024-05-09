@@ -1,4 +1,4 @@
-import { useGame } from "../context/GameProvider";
+import { useGame } from "../context/GameStateProvider";
 import { generateRandomSequence } from "../utils/utils";
 
 export const PlayBtn = () => {

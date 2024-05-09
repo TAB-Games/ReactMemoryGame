@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { Tile } from "./Tile";
 import { generateRandomId } from "../utils/utils";
-import { useGame } from "../context/GameProvider";
+import { GameStateProvider } from "../context/GameStateProvider";
+import { useGame } from "../context/GameStateProvider";
 import Gradient from "../models/Gradient";
 
 function GameBoard() {

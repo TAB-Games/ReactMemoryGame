@@ -5,17 +5,17 @@ import { PlayBtn } from "./components/PlayBtn";
 import Score from "./components/Score";
 import { generateRandomSequence } from "./utils/utils";
 
-import GameProvider from "./context/GameProvider";
+import { GameStateProvider } from "./context/GameStateProvider";
 
 function App() {
   return (
     <div>
       <h1>Memorization Station</h1>
-      <GameProvider>
+      <GameStateProvider>
         <Score />
         <GameBoard />
         <PlayBtn />
-      </GameProvider>
+      </GameStateProvider>
     </div>
   );
 }

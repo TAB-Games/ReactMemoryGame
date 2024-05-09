@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState } from "react";
 const GameContext = createContext();
 
 // Provider component to provide game state to its children
-export const GameProvider = ({ children }) => {
+export const GameStateProvider = ({ children }) => {
   const [score, setScore] = useState(0);
   const [numberOfTiles, setNumberOfTiles] = useState(4);
   const [currentSequence, setCurrentSequence] = useState([]);
