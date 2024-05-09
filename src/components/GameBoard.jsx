@@ -11,17 +11,12 @@ function GameBoard() {
   const [userInput, setUserInput] = useState([]); // keeps track of what user types
   const { currentSequence } = useGame();
   const [tileArr, setTileArr] = useState([]);
-  // const [gradient, setGradient] = useState(new Gradient());
+
   let gradient = new Gradient();
 
   useEffect(() => {
     createTiles();
   }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
-
-  useEffect(() => {
-    // Update the gradient colors on component mount
-    gradient.update();
-  }, [gradient]);
 
   const handleTileClick = (clickedIndex) => {
     // Logic to handle user input when clicking on a tile
