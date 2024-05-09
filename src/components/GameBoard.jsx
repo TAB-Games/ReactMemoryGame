@@ -4,18 +4,24 @@ import { Tile } from "./Tile";
 import { generateRandomId } from "../utils/utils";
 import { useGame } from "./GameProvider";
 import { generateRandomSequence } from "../utils/utils";
+import Gradient from "../models/Gradient";
 
 function GameBoard() {
   const { numberOfTiles } = useGame();
   const [userInput, setUserInput] = useState([]); // keeps track of what user types
-  const [sequenceLength, setSequenceLength] = useState(2); // sequence starts at 2
-  const [numTiles, setNumTiles] = useState(4);
-  const [level, setLevel] = useState(0);
+  const { currentSequence } = useGame();
+  const [tileArr, setTileArr] = useState([]);
+  // const [gradient, setGradient] = useState(new Gradient());
+  let gradient = new Gradient();
 
   useEffect(() => {
-    // Logic to generate random flashing sequence for current level
-    // Update flashingTiles state accordingly
-  }, [level]);
+    createTiles();
+  }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
+
+  useEffect(() => {
+    // Update the gradient colors on component mount
+    gradient.update();
+  }, [gradient]);
 
   const handleTileClick = (clickedIndex) => {
     // Logic to handle user input when clicking on a tile
@@ -23,16 +29,23 @@ function GameBoard() {
   };
 
   function createTiles() {
-    let tileArr = [];
+    let newTileArr = [];
     for (let i = 0; i < numberOfTiles; i++) {
       let id = generateRandomId();
 
-      tileArr.push(<Tile key={id} index={i} isFlashing={true} />);
+      let tileColor = {
+        backgroundColor: `rgba(${Math.abs(gradient.red.value)}, ${Math.abs(
+          gradient.blue.value
+        )}, ${Math.abs(gradient.green.value)}, 0.8)`,
+      };
+
+      newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
+      gradient.update();
     }
-    return tileArr;
+    setTileArr(newTileArr);
   }
 
-  return <div className="container">{createTiles()}</div>;
+  return <div className="container">{tileArr}</div>;
 }
 
 export default GameBoard;

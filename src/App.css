@@ -93,17 +93,17 @@ body {
   cursor: pointer;
   margin: auto;
   border-radius: 3px;
-  background-color: #25a6ecad;
+  /* background-color: #25a6ecad; */
   /* animation: tile-pulse 2s ease-in-out infinite alternate; */
 }
-.tile flashing {
-  background-color: rgba(0, 255, 255, 0.692);
+.tile-flashing {
   height: 3.125rem;
   width: 3.125rem;
-  border: 1px solid rgba(3, 198, 0, 0.842);
+  border: 2px solid rgba(255, 255, 255, 0.489);
   cursor: pointer;
   margin: auto;
-  border-radius: 300px;
+  border-radius: 3px;
+  background-color: #e4151597;
 }
 
 .tile:active {

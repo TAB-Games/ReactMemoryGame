@@ -1,0 +1,16 @@
+import Color from "./Color";
+class Gradient {
+  constructor() {
+    this.red = new Color("red", 230, 15);
+    this.green = new Color("green", 230, 1);
+    this.blue = new Color("blue", 230, 10);
+  }
+
+  update() {
+    this.red.updateValue();
+    this.green.updateValue();
+    this.blue.updateValue();
+  }
+}
+
+export default Gradient;

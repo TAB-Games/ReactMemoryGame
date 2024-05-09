@@ -4,10 +4,7 @@ import GameBoard from "./components/GameBoard";
 import { PlayBtn } from "./components/PlayBtn";
 import Score from "./components/Score";
 import { generateRandomSequence } from "./utils/utils";
-import {
-  CurrentSequenceProvider,
-  useCurrentSequence,
-} from "./components/CurrentSequenceContext";
+
 import { GameProvider } from "./components/GameProvider";
 
 function App() {
