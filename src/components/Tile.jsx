@@ -14,5 +14,11 @@ export const Tile = ({ key, index, isFlashing, tileColor }) => {
     return "eggs";
   }
 
+  // useEffect(() => {
+  //   // Update the gradient colors on component mount
+  //   gradient.update();
+  // }, [gradient]);
+
+  console.log(tileColor);
   return <div key={key} className="tile" style={tileColor}></div>;
 };
