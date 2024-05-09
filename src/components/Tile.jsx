@@ -1,3 +1,6 @@
+import generateRandomId from "../utils/utils";
+
 export const Tile = () => {
-  return <div className="tile"></div>;
+  let id = generateRandomId();
+  return <div className="tile" key={id}></div>;
 };
