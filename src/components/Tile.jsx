@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useGame } from "../context/GameStateProvider";
+import { generateRandomSequence } from "../utils/utils";
 
 export const Tile = ({
   key,
@@ -8,30 +9,54 @@ export const Tile = ({
   isFlashing,
   tileColor,
 }) => {
-  const { currentSequence, sequenceIndex } = useGame();
+  const {
+    score,
+    setScore,
+    numberOfTiles,
+    setNumberOfTiles,
+    currentSequence,
+    sequenceIndex,
+    setSequenceIndex,
+    setCurrentSequence,
+    sequenceLength,
+    setSequenceLength,
+  } = useGame();
 
-  // const [flashing, setFlashing] = useState(false);
+  function handleNextRound() {
+    let newScore = score + 1;
+    let newNumOfTiles = numberOfTiles + 1;
+    let newSeqLength = sequenceLength + 1; // TODO: change later
 
-  // useEffect(() => {
-  //   setFlashing(isFlashing);
-  // }, [isFlashing]);
+    const newSequence = generateRandomSequence(newSeqLength, newNumOfTiles);
+
+    setScore(newScore);
+    setNumberOfTiles(newNumOfTiles);
+    setSequenceLength(newSeqLength);
+    setCurrentSequence(newSequence);
+    setSequenceIndex(0);
+  }
 
   function handleTileClick() {
-    // check if it is correct tile in array sequence
-    // need to compare with global state ...redux toolkit ? or useContext
-    console.log("You clicked tile:", index);
     if (index === currentSequence[sequenceIndex]) {
-      console.log("correct!");
+      console.log("You clicked tile:", index + 1 + " Correct!");
+
+      if (sequenceIndex === currentSequence.length - 1) {
+        handleNextRound();
+      } else {
+        const newIndex = sequenceIndex + 1;
+        setSequenceIndex(newIndex);
+      }
     } else {
-      console.log("wronggg");
+      console.log("You clicked tile:", index + 1 + " Wrong!");
     }
   }
 
-  // useEffect(() => {
-  //   // Update the gradient colors on component mount
-  //   gradient.update();
-  // }, [gradient]);
-
-  console.log(tileColor);
-  return <div key={key} className="tile" style={tileColor}></div>;
+  return (
+    <div
+      key={key}
+      className="tile"
+      style={tileColor}
+      onClick={handleTileClick}
+    ></div>
+  );
 };

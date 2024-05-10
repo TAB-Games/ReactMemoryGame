@@ -6,8 +6,9 @@ const GameContext = createContext();
 // Provider component to provide game state to its children
 export const GameStateProvider = ({ children }) => {
   const [score, setScore] = useState(0);
-  const [numberOfTiles, setNumberOfTiles] = useState(4);
+  const [numberOfTiles, setNumberOfTiles] = useState(2);
   const [currentSequence, setCurrentSequence] = useState([]);
+  const [sequenceLength, setSequenceLength] = useState(2);
   const [sequenceIndex, setSequenceIndex] = useState(0);
   const [level, setLevel] = useState(1);
 
@@ -22,6 +23,8 @@ export const GameStateProvider = ({ children }) => {
         setNumberOfTiles,
         sequenceIndex,
         setSequenceIndex,
+        sequenceLength,
+        setSequenceLength,
       }}
     >
       {children}
@@ -29,5 +32,4 @@ export const GameStateProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use game context
 export const useGame = () => useContext(GameContext);

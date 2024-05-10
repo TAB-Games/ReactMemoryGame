@@ -5,7 +5,7 @@ export const PlayBtn = () => {
   const { setCurrentSequence } = useGame();
 
   function handlePlay() {
-    setCurrentSequence(generateRandomSequence(2, 4));
+    setCurrentSequence(generateRandomSequence(2, 2));
   }
 
   return (

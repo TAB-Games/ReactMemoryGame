@@ -5,8 +5,13 @@ export const generateRandomId = () => {
 export const generateRandomSequence = (lengthOfSequence, numberOfTiles) => {
   let currentSequence = [];
   for (let i = 0; i < lengthOfSequence; i++) {
-    currentSequence.push(Math.floor(Math.random() * numberOfTiles));
+    currentSequence.push(
+      Math.floor(Math.random() * (numberOfTiles * numberOfTiles))
+    );
   }
-  console.log("Current Sequence:", ...currentSequence);
+  console.log(
+    "Current Sequence:",
+    currentSequence.map((s) => s + 1)
+  );
   return currentSequence;
 };

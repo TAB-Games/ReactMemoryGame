@@ -23,6 +23,11 @@ function GameBoard() {
     gradient.update();
   }, [gradient]);
 
+  useEffect(() => {
+    // Update the CSS variable --numTiles
+    document.documentElement.style.setProperty("--numTiles", numberOfTiles);
+  }, [numberOfTiles]);
+
   const handleTileClick = (clickedIndex) => {
     // Logic to handle user input when clicking on a tile
     // Update userInput state accordingly
@@ -30,7 +35,7 @@ function GameBoard() {
 
   function createTiles() {
     let newTileArr = [];
-    for (let i = 0; i < numberOfTiles; i++) {
+    for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
 
       let tileColor = {
@@ -39,23 +44,7 @@ function GameBoard() {
         )}, ${Math.abs(gradient.green.value)}, 0.8)`,
       };
 
-      function handleTileClick() {
-        console.log("You clicked tile:", index);
-        if (index === currentSequence[sequenceIndex]) {
-          console.log("correct!");
-        } else {
-          console.log("wronggg");
-        }
-      }
-
-      newTileArr.push(
-        <Tile
-          key={id}
-          index={i}
-          onClick={handleTileClick}
-          tileColor={tileColor}
-        />
-      );
+      newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
     setTileArr(newTileArr);
