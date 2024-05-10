@@ -9,14 +9,14 @@ import { GameStateProvider } from "./context/GameStateProvider";
 
 function App() {
   return (
-    <div>
-      <h1>.memory</h1>
+    <>
+      <h1>.memory something that does matter</h1>
       <GameStateProvider>
         <Score />
         <GameBoard />
         <PlayBtn />
       </GameStateProvider>
-    </div>
+    </>
   );
 }
 
