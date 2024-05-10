@@ -32,5 +32,4 @@ export const GameStateProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use game context
 export const useGame = () => useContext(GameContext);
