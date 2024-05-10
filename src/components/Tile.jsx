@@ -1,6 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { useGame } from "../context/GameStateProvider";
 
-export const Tile = ({ key, index, isFlashing, tileColor }) => {
+export const Tile = ({
+  key,
+  index,
+  handleTileClick,
+  isFlashing,
+  tileColor,
+}) => {
+  const { currentSequence, sequenceIndex } = useGame();
+
   // const [flashing, setFlashing] = useState(false);
 
   // useEffect(() => {
@@ -10,8 +19,12 @@ export const Tile = ({ key, index, isFlashing, tileColor }) => {
   function handleTileClick() {
     // check if it is correct tile in array sequence
     // need to compare with global state ...redux toolkit ? or useContext
-
-    return "eggs";
+    console.log("You clicked tile:", index);
+    if (index === currentSequence[sequenceIndex]) {
+      console.log("correct!");
+    } else {
+      console.log("wronggg");
+    }
   }
 
   // useEffect(() => {

@@ -10,7 +10,7 @@ import { GameStateProvider } from "./context/GameStateProvider";
 function App() {
   return (
     <div>
-      <h1>Memorization Station</h1>
+      <h1>.memory</h1>
       <GameStateProvider>
         <Score />
         <GameBoard />

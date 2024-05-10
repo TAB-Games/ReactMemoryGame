@@ -18,8 +18,6 @@ class Color {
     } else {
       this.value -= this.mod;
     }
-
-    // console.log(`${this.color}: ${this.value}`);
   }
 
   reset() {

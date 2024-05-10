@@ -39,7 +39,23 @@ function GameBoard() {
         )}, ${Math.abs(gradient.green.value)}, 0.8)`,
       };
 
-      newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
+      function handleTileClick() {
+        console.log("You clicked tile:", index);
+        if (index === currentSequence[sequenceIndex]) {
+          console.log("correct!");
+        } else {
+          console.log("wronggg");
+        }
+      }
+
+      newTileArr.push(
+        <Tile
+          key={id}
+          index={i}
+          onClick={handleTileClick}
+          tileColor={tileColor}
+        />
+      );
       gradient.update();
     }
     setTileArr(newTileArr);

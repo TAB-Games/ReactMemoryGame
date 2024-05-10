@@ -5,7 +5,7 @@
   text-align: center;
 }
 :root {
-  --numTiles: 3;
+  --numTiles: 2;
 }
 
 * {
