@@ -19,14 +19,15 @@ body {
 }
 
 #score {
-  height: 10px;
-  width: 30px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(139, 181, 215, 0.6);
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  font-size: 40px;
-  color: rgba(164, 106, 106, 0.873);
-  /* display: none */
+  /* margin-top: 30px;
+  margin-bottom: 50px; */
+  text-align: center;
+  text-shadow: -1px -1px 0 #000000, 1px -1px 0 #00000065, -1px 1px 0 #ac3838,
+    1px 1px 0 #00000082;
 }
 
 .container {
@@ -98,7 +99,7 @@ body {
 }
 .tile-flashing {
   height: 3.125rem;
-  width: 3.125rem; 
+  width: 3.125rem;
   border: 2px solid rgba(255, 255, 255, 0.489);
   cursor: pointer;
   margin: auto;
@@ -240,4 +241,22 @@ body {
       0 0 0px rgb(255, 0, 0), 0 0 0px rgb(255, 0, 0), 0 0 0px rgb(255, 0, 0),
       0 0 0px rgb(255, 0, 0), 0 0 0px #0ff;
   }
+}
+
+.play-btn {
+  background-color: rgba(164, 106, 106, 0.682);
+  color: white;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center; /* Center the text */
+}
+
+.play-btn:hover {
+  background-color: #33a9d463;
 }
