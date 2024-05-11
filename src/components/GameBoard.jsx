@@ -4,6 +4,8 @@ import { Tile } from "./Tile";
 import { generateRandomId } from "../utils/utils";
 import { GameStateProvider } from "../context/GameStateProvider";
 import { useGame } from "../context/GameStateProvider";
+import Leaderboard from "./Leaderboard";
+
 import Gradient from "../models/Gradient";
 
 function GameBoard() {
@@ -11,7 +13,8 @@ function GameBoard() {
   const [userInput, setUserInput] = useState([]); // keeps track of what user types
   const { currentSequence } = useGame();
   const [tileArr, setTileArr] = useState([]);
-  // const [gradient, setGradient] = useState(new Gradient());
+  const { isGameOver } = useGame();
+
   let gradient = new Gradient();
 
   useEffect(() => {
@@ -45,7 +48,13 @@ function GameBoard() {
     setTileArr(newTileArr);
   }
 
-  return <div className="container">{tileArr}</div>;
+  return (
+    <>
+      {isGameOver && <Leaderboard />}
+
+      {!isGameOver && <div className="container">{tileArr}</div>}
+    </>
+  );
 }
 
 export default GameBoard;
