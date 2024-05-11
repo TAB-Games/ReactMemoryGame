@@ -48,6 +48,7 @@ export const Tile = ({
       }
     } else {
       console.log("You clicked tile:", index + 1 + " Wrong!");
+      
     }
   }
 
