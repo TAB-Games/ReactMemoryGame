@@ -50,8 +50,8 @@ export const Tile = ({ id, index, handleTileClick, isFlashing, tileColor }) => {
   return (
     <div
       key={id}
-      className="tile"
-      style={tileColor}
+      className={`tile ${isFlashing ? "-flashing" : ""}`}
+      style={isFlashing ? {} : tileColor}
       onClick={handleTileClick}
     ></div>
   );

@@ -1,4 +1,5 @@
 import { useGame } from "../context/GameStateProvider";
+import { useUI } from "../context/UIStateProvider";
 import { generateRandomSequence } from "../utils/utils";
 
 export const PlayBtn = () => {
@@ -10,6 +11,7 @@ export const PlayBtn = () => {
     setScore,
     setSequenceLength,
   } = useGame();
+  const { setIsTileFlashing } = useUI();
 
   function handlePlay() {
     // Initialize starting values
@@ -18,6 +20,7 @@ export const PlayBtn = () => {
     setCurrentSequence(generateRandomSequence(2, 2));
     setScore(0);
     setIsGameOver(false);
+    setIsTileFlashing(true);
   }
 
   return (

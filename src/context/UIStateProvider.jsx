@@ -9,7 +9,20 @@ export const UIStateProvider = ({ children }) => {
   const [isTileClickEnabled, setIsTileClickEnabled] = useState(false);
   const [isPlayBtnEnabled, setIsPlayBtnEnabled] = useState(true); // probably unnecessary actually
 
-  return <UIContext.Provider value={{}}>{children}</UIContext.Provider>;
+  return (
+    <UIContext.Provider
+      value={{
+        isTileFlashing,
+        setIsTileFlashing,
+        isTileClickEnabled,
+        setIsTileClickEnabled,
+        isPlayBtnEnabled,
+        setIsPlayBtnEnabled,
+      }}
+    >
+      {children}
+    </UIContext.Provider>
+  );
 };
 
-export const useGame = () => useContext(UIContext);
+export const useUI = () => useContext(UIContext);
