@@ -28,13 +28,8 @@ function GameBoard() {
     document.documentElement.style.setProperty("--numTiles", numberOfTiles);
   }, [numberOfTiles]);
 
-  const handleTileClick = (clickedIndex) => {
-    // Logic to handle user input when clicking on a tile
-    // Update userInput state accordingly
-  };
-
   function createTiles() {
-    let newTileArr = [];
+    const newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
 

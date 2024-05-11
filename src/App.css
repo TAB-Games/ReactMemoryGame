@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 :root {
   --numTiles: 2;
@@ -40,8 +42,6 @@ body {
   display: grid;
   grid-template-columns: repeat(var(--numTiles), minmax(20px, 100px));
   grid-template-rows: repeat(var(--numTiles), minmax(20px, 100px));
-
-  max-width: 1000px;
 
   justify-content: center;
   align-content: center;
@@ -98,7 +98,7 @@ body {
 }
 .tile-flashing {
   height: 3.125rem;
-  width: 3.125rem;
+  width: 3.125rem; 
   border: 2px solid rgba(255, 255, 255, 0.489);
   cursor: pointer;
   margin: auto;

@@ -20,6 +20,7 @@ export const Tile = ({
     setCurrentSequence,
     sequenceLength,
     setSequenceLength,
+    setIsGameOver,
   } = useGame();
 
   function handleNextRound() {
@@ -48,6 +49,7 @@ export const Tile = ({
       }
     } else {
       console.log("You clicked tile:", index + 1 + " Wrong!");
+      setIsGameOver(true)
     }
   }
 
