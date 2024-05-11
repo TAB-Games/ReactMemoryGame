@@ -2,13 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useGame } from "../context/GameStateProvider";
 import { generateRandomSequence } from "../utils/utils";
 
-export const Tile = ({
-  key,
-  index,
-  handleTileClick,
-  isFlashing,
-  tileColor,
-}) => {
+export const Tile = ({ id, index, handleTileClick, isFlashing, tileColor }) => {
   const {
     score,
     setScore,
@@ -49,13 +43,13 @@ export const Tile = ({
       }
     } else {
       console.log("You clicked tile:", index + 1 + " Wrong!");
-      setIsGameOver(true)
+      setIsGameOver(true);
     }
   }
 
   return (
     <div
-      key={key}
+      key={id}
       className="tile"
       style={tileColor}
       onClick={handleTileClick}
