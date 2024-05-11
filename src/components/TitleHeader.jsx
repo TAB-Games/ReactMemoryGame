@@ -8,10 +8,17 @@ function TitleHeader() {
 
     useEffect(() => {
         changeTitle();
-      }, [isGameOver]); // Regenerate tiles whenever numberOfTiles changes
+      }, [isGameOver]); 
 
     function changeTitle(){
-
+        if(isGameOver){
+            const gameOver = "GameOver"
+            setTitle(gameOver)
+        } else {
+            const gameOver = ".mamoryzation"
+            setTitle(gameOver)
+        }
+        
     }
   return (
     <h1> { title } </h1>
