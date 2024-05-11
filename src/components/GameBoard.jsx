@@ -8,6 +8,7 @@ import Leaderboard from "./Leaderboard";
 
 import Gradient from "../models/Gradient";
 import { useUI } from "../context/UIStateProvider";
+import { FLASH_DURATION, FLASH_INTERVAL } from "../utils/consts";
 
 function GameBoard() {
   const {
@@ -44,10 +45,10 @@ function GameBoard() {
       if (index < currentSequence.length) {
         flashTile(currentSequence[index], index);
         index++;
-        setTimeout(flashTiles, 500); // Flash the next tile after 500ms
+        setTimeout(flashTiles, FLASH_INTERVAL); // Flash the next tile after 500ms
       } else {
         setIsTileFlashing(false); // Stop flashing when all tiles are flashed
-        // Optionally reset sequence index or perform other actions
+        setSequenceIndex(0);
       }
     };
 
@@ -76,7 +77,7 @@ function GameBoard() {
     setTimeout(() => {
       newTileArr[tileIndex] = tileArr[tileIndex];
       setTileArr(newTileArr);
-    }, 500);
+    }, FLASH_DURATION);
   }
 
   function createTiles() {
@@ -90,12 +91,12 @@ function GameBoard() {
         )}, ${Math.abs(gradient.green.value)}, 0.8)`,
       };
       // add to map to reference later
-      tileColorMap.set(
-        i,
-        `rgba(${gradient.red.value},${gradient.blue.value},${
-          gradient.green.value
-        },${0.8})`
-      );
+      // tileColorMap.set(
+      //   i,
+      //   `rgba(${gradient.red.value},${gradient.blue.value},${
+      //     gradient.green.value
+      //   },${0.8})`
+      // );
 
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();

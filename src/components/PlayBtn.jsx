@@ -1,6 +1,10 @@
 import { useGame } from "../context/GameStateProvider";
 import { useUI } from "../context/UIStateProvider";
 import { generateRandomSequence } from "../utils/utils";
+import {
+  STARTING_MATRIX_SIZE,
+  STARTING_SEQUENCE_LENGTH,
+} from "../utils/consts";
 
 export const PlayBtn = () => {
   const {
@@ -14,10 +18,12 @@ export const PlayBtn = () => {
   const { setIsTileFlashing } = useUI();
 
   function handlePlay() {
-    // Initialize starting values
-    setSequenceLength(2);
-    setNumberOfTiles(2);
-    setCurrentSequence(generateRandomSequence(2, 2));
+    // TODO: Initialize starting values better
+    setSequenceLength(STARTING_SEQUENCE_LENGTH);
+    setNumberOfTiles(STARTING_MATRIX_SIZE);
+    setCurrentSequence(
+      generateRandomSequence(STARTING_SEQUENCE_LENGTH, STARTING_MATRIX_SIZE)
+    );
     setScore(0);
     setIsGameOver(false);
     setIsTileFlashing(true);
