@@ -9,16 +9,19 @@ import { generateRandomSequence } from "./utils/utils";
 
 import { GameStateProvider } from "./context/GameStateProvider";
 import Leaderboard from "./components/Leaderboard";
+import { UIStateProvider } from "./context/UIStateProvider";
 
 function App() {
   return (
     <>
-      <GameStateProvider>
-        <TitleHeader />
-        <Score />
-        <GameBoard />
-        <PlayBtn />
-      </GameStateProvider>
+      <UIStateProvider>
+        <GameStateProvider>
+          <TitleHeader />
+          <Score />
+          <GameBoard />
+          <PlayBtn />
+        </GameStateProvider>
+      </UIStateProvider>
     </>
   );
 }
