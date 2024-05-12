@@ -8,6 +8,7 @@ export const UIStateProvider = ({ children }) => {
   const [isTileFlashing, setIsTileFlashing] = useState(false);
   const [isTileClickEnabled, setIsTileClickEnabled] = useState(false);
   const [isPlayBtnEnabled, setIsPlayBtnEnabled] = useState(true); // probably unnecessary actually
+  const [tileArr, setTileArr] = useState([]);
 
   return (
     <UIContext.Provider
@@ -18,6 +19,8 @@ export const UIStateProvider = ({ children }) => {
         setIsTileClickEnabled,
         isPlayBtnEnabled,
         setIsPlayBtnEnabled,
+        tileArr,
+        setTileArr,
       }}
     >
       {children}

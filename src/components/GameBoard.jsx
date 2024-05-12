@@ -18,16 +18,13 @@ function GameBoard() {
     sequenceIndex,
     setSequenceIndex,
   } = useGame();
-  const { isTileFlashing, setIsTileFlashing } = useUI();
-  const [userInput, setUserInput] = useState([]); // keeps track of what user types
-  const [tileArr, setTileArr] = useState([]);
-
+  const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
+  // const [tileArr, setTileArr] = useState([]);
   let gradient = new Gradient();
-  let tileColorMap = new Map();
 
   useEffect(() => {
     createTiles();
-  }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
+  }, [numberOfTiles, currentSequence]); // Regenerate tiles whenever numberOfTiles changes
 
   useEffect(() => {
     gradient.update();
@@ -40,43 +37,71 @@ function GameBoard() {
 
   useEffect(() => {
     let index = 0;
+    let timeoutIds = [];
 
     const flashTiles = () => {
       if (index < currentSequence.length) {
-        flashTile(currentSequence[index], index);
+        flashTile(currentSequence[index]);
         index++;
-        setTimeout(flashTiles, FLASH_INTERVAL); // Flash the next tile after 500ms
+        timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
       } else {
         setIsTileFlashing(false); // Stop flashing when all tiles have flashed
         setSequenceIndex(0); // TODO: might be doubled somewhere
       }
     };
 
-    if (isTileFlashing) {
-      flashTiles();
+    if (tileArr.length && isTileFlashing) {
+      try {
+        flashTiles();
+      } catch (err) {
+        console.error("Error flashing tiles", err);
+      }
     }
-  }, [isTileFlashing]);
+    return () => {
+      timeoutIds.forEach(clearTimeout);
+    };
+  }, [currentSequence, isTileFlashing]);
 
-  function flashTile(tileIndex, index) {
+  function flashTile(tileIndex) {
     console.log("Flashing tile:", tileIndex + 1);
+    console.log(tileArr, tileIndex);
 
-    const newTileArr = [...tileArr];
+    if (tileIndex < 0 || tileIndex >= tileArr.length) {
+      console.error("Invalid tile index:", tileIndex);
+      return;
+    }
 
-    // Flash the tile
-    newTileArr[tileIndex] = (
-      <div key={tileArr[tileIndex].key} className="tile-flashing"></div>
-    );
-    setTileArr(newTileArr);
+    const originalTileColor = tileArr[tileIndex].props.tileColor;
 
-    // After a delay, restore the original style of the tile
+    // flash tile
+    setTileArr((prevTileArr) => {
+      const newTileArr = [...prevTileArr];
+      newTileArr[tileIndex] = (
+        <div key={`tile-${tileIndex}`} className="tile-flashing"></div>
+      );
+      return newTileArr;
+    });
+
+    // return to normal color
     setTimeout(() => {
-      newTileArr[tileIndex] = tileArr[tileIndex];
-      setTileArr(newTileArr);
+      setTileArr((prevTileArr) => {
+        const newTileArr = [...prevTileArr];
+        newTileArr[tileIndex] = (
+          <Tile
+            key={`tile-${tileIndex}`}
+            index={tileIndex}
+            tileColor={originalTileColor}
+            className="tile"
+          />
+        );
+        return newTileArr;
+      });
     }, FLASH_DURATION);
   }
 
   function createTiles() {
-    const newTileArr = [];
+    console.log("Creating tiles:", numberOfTiles * numberOfTiles);
+    let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
 
@@ -85,18 +110,12 @@ function GameBoard() {
           gradient.blue.value
         )}, ${Math.abs(gradient.green.value)}, 0.8)`,
       };
-      // add to map to reference later
-      // tileColorMap.set(
-      //   i,
-      //   `rgba(${gradient.red.value},${gradient.blue.value},${
-      //     gradient.green.value
-      //   },${0.8})`
-      // );
 
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
-    setTileArr(newTileArr);
+    console.log(newTileArr);
+    setTileArr(() => newTileArr);
   }
 
   return (
