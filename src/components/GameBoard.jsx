@@ -42,6 +42,8 @@ function GameBoard() {
 
     const flashTiles = () => {
       if (index < currentSequence.length) {
+        // TODO: TILE ARRAY IS NOT being updated here
+        console.error("Flashing with tileArr,", tileArr);
         flashTile(currentSequence[index]);
         index++;
         timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
@@ -65,10 +67,9 @@ function GameBoard() {
 
   function flashTile(tileIndex) {
     console.log("Flashing tile:", tileIndex + 1);
-    console.log("INDEX, ", [tileArr].index);
-
+    // console.log("INDEX, ", tileArr[index]);
     if (tileIndex < 0 || tileIndex >= tileArr.length) {
-      console.error("Invalid tile index:", tileIndex);
+      console.error("Tile array wasn't updated before", tileArr);
       return;
     }
 
