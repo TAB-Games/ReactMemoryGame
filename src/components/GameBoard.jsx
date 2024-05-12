@@ -22,6 +22,14 @@ function GameBoard() {
   // const [tileArr, setTileArr] = useState([]);
   let gradient = new Gradient();
   let timeoutId;
+  let prevArrLength = tileArr.length;
+
+  useEffect(() => {
+    if (prevArrLength < tileArr.length) {
+      prevArrLength = tileArr.length;
+      setIsTileFlashing(true);
+    }
+  }, [tileArr]);
 
   useEffect(() => {
     createTiles();
@@ -41,15 +49,15 @@ function GameBoard() {
     let timeoutIds = [];
 
     const flashTiles = () => {
-      if (index < currentSequence.length) {
-        // TODO: TILE ARRAY IS NOT being updated here
-        console.error("Flashing with tileArr,", tileArr);
-        flashTile(currentSequence[index]);
-        index++;
-        timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
-      } else {
-        setSequenceIndex(0);
-        setIsTileFlashing(false); // Stop flashing when all tiles have flashed
+      if (tileArr.length === numberOfTiles * numberOfTiles) {
+        if (index < currentSequence.length) {
+          flashTile(currentSequence[index]);
+          index++;
+          timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
+        } else {
+          setSequenceIndex(0);
+          setIsTileFlashing(false); // Stop flashing when all tiles have flashed
+        }
       }
     };
 
@@ -63,11 +71,10 @@ function GameBoard() {
     return () => {
       timeoutIds.forEach(clearTimeout);
     };
-  }, [currentSequence, isTileFlashing]);
+  }, [prevArrLength, isTileFlashing]);
 
   function flashTile(tileIndex) {
     console.log("Flashing tile:", tileIndex + 1);
-    // console.log("INDEX, ", tileArr[index]);
     if (tileIndex < 0 || tileIndex >= tileArr.length) {
       console.error("Tile array wasn't updated before", tileArr);
       return;
@@ -77,7 +84,6 @@ function GameBoard() {
 
     // flash tile
     setTileArr((prevTileArr) => {
-      console.log("set arr in flash", prevTileArr);
       const newTileArr = [...prevTileArr];
       newTileArr[tileIndex] = (
         <div key={`tile-${tileIndex}`} className="tile-flashing"></div>
@@ -88,8 +94,6 @@ function GameBoard() {
     // return to normal color
     timeoutId = setTimeout(() => {
       setTileArr((prevTileArr) => {
-        console.log("set arr in return", prevTileArr);
-
         const newTileArr = [...prevTileArr];
         newTileArr[tileIndex] = (
           <Tile
@@ -123,10 +127,8 @@ function GameBoard() {
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
-    console.log(newTileArr);
-    setTileArr(() => {
-      console.log("set arr in createTiles", newTileArr);
 
+    setTileArr(() => {
       return newTileArr;
     });
   }
