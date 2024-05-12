@@ -17,7 +17,7 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
     setSequenceLength,
     setIsGameOver,
   } = useGame();
-  const { setIsTileFlashing, setTileArr } = useUI();
+  const { setIsTileFlashing } = useUI();
 
   function handleNextRound() {
     console.log("Handling next round");

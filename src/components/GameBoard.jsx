@@ -21,10 +21,11 @@ function GameBoard() {
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
   // const [tileArr, setTileArr] = useState([]);
   let gradient = new Gradient();
+  let timeoutId;
 
   useEffect(() => {
     createTiles();
-  }, [numberOfTiles, currentSequence]); // Regenerate tiles whenever numberOfTiles changes
+  }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
 
   useEffect(() => {
     gradient.update();
@@ -45,8 +46,8 @@ function GameBoard() {
         index++;
         timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
       } else {
+        setSequenceIndex(0);
         setIsTileFlashing(false); // Stop flashing when all tiles have flashed
-        setSequenceIndex(0); // TODO: might be doubled somewhere
       }
     };
 
@@ -64,7 +65,7 @@ function GameBoard() {
 
   function flashTile(tileIndex) {
     console.log("Flashing tile:", tileIndex + 1);
-    console.log(tileArr, tileIndex);
+    console.log("INDEX, ", [tileArr].index);
 
     if (tileIndex < 0 || tileIndex >= tileArr.length) {
       console.error("Invalid tile index:", tileIndex);
@@ -75,6 +76,7 @@ function GameBoard() {
 
     // flash tile
     setTileArr((prevTileArr) => {
+      console.log("set arr in flash", prevTileArr);
       const newTileArr = [...prevTileArr];
       newTileArr[tileIndex] = (
         <div key={`tile-${tileIndex}`} className="tile-flashing"></div>
@@ -83,8 +85,10 @@ function GameBoard() {
     });
 
     // return to normal color
-    setTimeout(() => {
+    timeoutId = setTimeout(() => {
       setTileArr((prevTileArr) => {
+        console.log("set arr in return", prevTileArr);
+
         const newTileArr = [...prevTileArr];
         newTileArr[tileIndex] = (
           <Tile
@@ -97,6 +101,10 @@ function GameBoard() {
         return newTileArr;
       });
     }, FLASH_DURATION);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }
 
   function createTiles() {
@@ -115,7 +123,11 @@ function GameBoard() {
       gradient.update();
     }
     console.log(newTileArr);
-    setTileArr(() => newTileArr);
+    setTileArr(() => {
+      console.log("set arr in createTiles", newTileArr);
+
+      return newTileArr;
+    });
   }
 
   return (
