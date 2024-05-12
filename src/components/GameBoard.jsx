@@ -64,11 +64,7 @@ function GameBoard() {
 
     // Flash the tile
     newTileArr[tileIndex] = (
-      <div
-        key={tileArr[tileIndex].key}
-        className="tile-flashing"
-        onClick={tileArr[tileIndex].props.onClick}
-      ></div>
+      <div key={tileArr[tileIndex].key} className="tile-flashing"></div>
     );
     setTileArr(newTileArr);
 

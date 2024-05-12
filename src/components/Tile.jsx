@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useGame } from "../context/GameStateProvider";
 import { generateRandomSequence } from "../utils/utils";
 
-export const Tile = ({ id, index, handleTileClick, isFlashing, tileColor }) => {
+export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const {
     score,
     setScore,
@@ -50,8 +50,8 @@ export const Tile = ({ id, index, handleTileClick, isFlashing, tileColor }) => {
   return (
     <div
       key={id}
-      className={`tile ${isFlashing ? "-flashing" : ""}`}
-      style={isFlashing ? {} : tileColor}
+      className={"tile"}
+      style={tileColor}
       onClick={handleTileClick}
     ></div>
   );
