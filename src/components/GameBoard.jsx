@@ -47,8 +47,8 @@ function GameBoard() {
         index++;
         setTimeout(flashTiles, FLASH_INTERVAL); // Flash the next tile after 500ms
       } else {
-        setIsTileFlashing(false); // Stop flashing when all tiles are flashed
-        setSequenceIndex(0);
+        setIsTileFlashing(false); // Stop flashing when all tiles have flashed
+        setSequenceIndex(0); // TODO: might be doubled somewhere
       }
     };
 
@@ -66,8 +66,7 @@ function GameBoard() {
     newTileArr[tileIndex] = (
       <div
         key={tileArr[tileIndex].key}
-        className="tile"
-        style={{ backgroundColor: "rgba(255, 0, 0, 0.5)" }}
+        className="tile-flashing"
         onClick={tileArr[tileIndex].props.onClick}
       ></div>
     );
