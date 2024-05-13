@@ -18,7 +18,7 @@ function TitleHeader() {
       setTitle(gameOver);
     }
   }
-  return <h1> {title} </h1>;
+  return <h1 className="game-Over"> {title} </h1>;
 }
 
 export default TitleHeader;

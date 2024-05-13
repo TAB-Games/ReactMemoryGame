@@ -3,6 +3,7 @@ import Form from "./Form";
 import { getScores, addScore } from "../utils/firebase";
 
 import { useGame } from "../context/GameStateProvider";
+import { database } from "../utils/consts";
 
 function Leaderboard() {
   const { isGameOver, score } = useGame();
