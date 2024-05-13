@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Form from "./Form";
+import { getScores, addScore } from "../utils/firebase";
 
 import { useGame } from "../context/GameStateProvider";
 
@@ -26,15 +27,21 @@ function Leaderboard() {
     getData();
   }, [isGameOver]);
 
-  function getData() {
+  async function getData() {
     {
+      console.log("Fetching data from database");
       // GET DATA FROM THE DB TO POPULATE LEADERBOARD
+
+      const scores = await getScores();
+      console.log("Fetching scores...");
+      console.log("scores: ", scores);
     }
   }
 
   const handleNameSubmit = (name) => {
     console.log("Sending score to database...");
     console.log(`${name}: ${score}`);
+    addScore(name, score);
     // setPlayerName(name);
     setIsDisplayingForm(false);
     // Send name and score to the database
