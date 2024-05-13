@@ -1,43 +1,32 @@
 import React, { useEffect, useState } from "react";
 import Form from "./Form";
+import { getScores, addScore } from "../utils/firebase";
 
 import { useGame } from "../context/GameStateProvider";
+import { database } from "../utils/consts";
 
 function Leaderboard() {
   const { isGameOver, score } = useGame();
   const [isDisplayingForm, setIsDisplayingForm] = useState(true);
-  const [playerName, setPlayerName] = useState(null);
-  const [allScores, setAllScores] = useState([
-    {
-      name: "Brian",
-      score: "5",
-    },
-    {
-      name: "Elis",
-      score: "1",
-    },
-    {
-      name: "Alex",
-      score: "4",
-    },
-  ]);
+  const [allScores, setAllScores] = useState([]);
 
   useEffect(() => {
     getData();
-  }, [isGameOver]);
+  }, [isDisplayingForm]);
 
-  function getData() {
+  async function getData() {
     {
-      // GET DATA FROM THE DB TO POPULATE LEADERBOARD
+      console.log("Fetching data from database");
+
+      const scores = await getScores();
+      setAllScores(scores);
     }
   }
 
   const handleNameSubmit = (name) => {
     console.log("Sending score to database...");
-    console.log(`${name}: ${score}`);
-    // setPlayerName(name);
+    addScore(name, score);
     setIsDisplayingForm(false);
-    // Send name and score to the database
   };
 
   return (
