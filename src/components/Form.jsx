@@ -10,17 +10,19 @@ function Form({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Enter your name:
-        <input
-          type="text"
-          value={name}
-          onChange={(event) => setName(event.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Submit</button>
+    <form className="name-form" onSubmit={handleSubmit}>
+      <div className="name-input-label">Enter your name:</div>
+      <input
+        type="text"
+        className="name-input"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+        required
+      />
+
+      <button className="name-form-btn" type="submit">
+        Submit
+      </button>
     </form>
   );
 }

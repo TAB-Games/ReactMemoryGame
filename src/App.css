@@ -36,30 +36,20 @@ h1 {
 }
 
 .container {
-  flex-direction: column;
-
+  display: grid;
+  grid-template-columns: repeat(var(--numTiles), minmax(10px, 50px));
+  grid-template-rows: repeat(var(--numTiles), minmax(10px, 50px));
   max-width: 500px;
   justify-items: center;
   align-items: center;
-
-  border-radius: 10px;
-  color: white;
-
-  display: grid;
-  grid-template-columns: repeat(var(--numTiles), minmax(20px, 100px));
-  grid-template-rows: repeat(var(--numTiles), minmax(20px, 100px));
-
-  justify-content: center;
-  align-content: center;
   margin: auto;
   margin-top: 50px;
-  /* margin-left: 100px;
-  margin-right: 100px; */
   border: 1px solid white;
   border-radius: 10px;
   background-color: rgba(164, 106, 106, 0);
   animation: regular-pulse 5s ease-in-out infinite alternate;
 }
+
 .container-gameOver {
   display: flex;
   flex-direction: column;
@@ -268,4 +258,33 @@ h1 {
 
 .play-btn:hover {
   background-color: #33a9d463;
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid pink;
+  border-radius: 10px;
+  box-shadow: 5px 2px 10px rgba(239, 135, 140, 0.8);
+}
+
+.name-input-label {
+  font-size: xx-large;
+}
+
+.name-input {
+  padding: 10px;
+  font-size: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+}
+
+.name-form-btn {
+  width: 50%;
+  align-self: end;
+  padding: 0;
+  margin-bottom: 20px;
+  margin-right: 20px;
 }
