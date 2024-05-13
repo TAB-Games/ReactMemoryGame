@@ -8,43 +8,25 @@ function Leaderboard() {
   const { isGameOver, score } = useGame();
   const [isDisplayingForm, setIsDisplayingForm] = useState(true);
   const [playerName, setPlayerName] = useState(null);
-  const [allScores, setAllScores] = useState([
-    {
-      name: "Brian",
-      score: "5",
-    },
-    {
-      name: "Elis",
-      score: "1",
-    },
-    {
-      name: "Alex",
-      score: "4",
-    },
-  ]);
+  const [allScores, setAllScores] = useState([]);
 
   useEffect(() => {
     getData();
-  }, [isGameOver]);
+  }, [isDisplayingForm]);
 
   async function getData() {
     {
       console.log("Fetching data from database");
-      // GET DATA FROM THE DB TO POPULATE LEADERBOARD
 
       const scores = await getScores();
-      console.log("Fetching scores...");
-      console.log("scores: ", scores);
+      setAllScores(scores);
     }
   }
 
   const handleNameSubmit = (name) => {
     console.log("Sending score to database...");
-    console.log(`${name}: ${score}`);
     addScore(name, score);
-    // setPlayerName(name);
     setIsDisplayingForm(false);
-    // Send name and score to the database
   };
 
   return (

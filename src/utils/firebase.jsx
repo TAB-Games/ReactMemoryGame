@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { onValue, ref, get, push } from "firebase/database";
+import { ref, get, push } from "firebase/database";
 
 const {
   VITE_API_KEY,
@@ -22,6 +22,8 @@ const firebaseConfig = {
   appId: VITE_APP_ID,
 };
 
+//*********************************** */
+
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
@@ -29,16 +31,12 @@ const db = getDatabase(app);
 export function addScore(username, score) {
   const scoreRef = ref(db, `ScoreSet/`); // Reference to the location in the database
   const data = { name: username, score: score }; // Data to be saved
-  // Set the data at the reference location
   push(scoreRef, data)
     .then(() => {
-      // If successful, show success message
-      alert("Data Added Successfully");
+      console.log("Data Added Successfully");
     })
     .catch((error) => {
-      // If unsuccessful, show error message and log the error
-      alert("Unsuccessful");
-      console.log(error);
+      console.error("Data add unsuccessful", error);
     });
 }
 
@@ -50,13 +48,12 @@ export async function getScores() {
     snapshot.forEach((childSnapshot) => {
       if (childSnapshot.exists()) {
         const data = childSnapshot.val();
-
         allScores.push(data);
-        return allScores;
       } else {
         console.log("no data from database");
       }
     });
   });
-  allScores.sort((a, b) => b.score - a.score).splice(10);
+
+  return allScores;
 }
