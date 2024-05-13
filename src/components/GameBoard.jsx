@@ -110,7 +110,6 @@ function GameBoard() {
   }
 
   function createTiles() {
-    console.log("Creating tiles:", numberOfTiles * numberOfTiles);
     let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
