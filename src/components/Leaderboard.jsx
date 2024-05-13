@@ -7,7 +7,6 @@ import { useGame } from "../context/GameStateProvider";
 function Leaderboard() {
   const { isGameOver, score } = useGame();
   const [isDisplayingForm, setIsDisplayingForm] = useState(true);
-  const [playerName, setPlayerName] = useState(null);
   const [allScores, setAllScores] = useState([]);
 
   useEffect(() => {
