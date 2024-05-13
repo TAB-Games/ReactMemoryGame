@@ -19,12 +19,13 @@ function GameBoard() {
     setSequenceIndex,
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
-  // const [tileArr, setTileArr] = useState([]);
+
   let gradient = new Gradient();
   let timeoutId;
   let prevArrLength = tileArr.length;
 
   useEffect(() => {
+    // checks if tileArr got updated
     if (prevArrLength < tileArr.length) {
       prevArrLength = tileArr.length;
       setIsTileFlashing(true);
@@ -33,16 +34,12 @@ function GameBoard() {
 
   useEffect(() => {
     createTiles();
+    document.documentElement.style.setProperty("--numTiles", numberOfTiles);
   }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
 
   useEffect(() => {
     gradient.update();
   }, [gradient]);
-
-  useEffect(() => {
-    // Update the grid according to numberOfTiles
-    document.documentElement.style.setProperty("--numTiles", numberOfTiles);
-  }, [numberOfTiles]);
 
   useEffect(() => {
     let index = 0;

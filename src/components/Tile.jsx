@@ -27,7 +27,6 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
       numberOfTiles + 1
     );
 
-    setScore((prevScore) => prevScore + 1);
     setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
     setSequenceLength((prevSeqLength) => prevSeqLength + 1);
     setCurrentSequence(newSequence);
@@ -38,13 +37,13 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   function handleTileClick() {
     if (index === currentSequence[sequenceIndex]) {
       console.log("You clicked tile:", index + 1 + " Correct!");
+      setScore((prevScore) => prevScore + 1);
 
       // if we clicked the last tile in the sequence, go next
       if (sequenceIndex === currentSequence.length - 1) {
         handleNextRound();
       } else {
-        const newIndex = sequenceIndex + 1;
-        setSequenceIndex(newIndex);
+        setSequenceIndex((prevIndex) => prevIndex + 1);
       }
     } else {
       console.log("You clicked tile:", index + 1 + " Wrong!");

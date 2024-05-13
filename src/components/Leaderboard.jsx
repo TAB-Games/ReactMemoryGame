@@ -41,7 +41,7 @@ function Leaderboard() {
   };
 
   return (
-    <>
+    <div className="container-gameOver">
       {isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
       {!isDisplayingForm && (
         <div className="leaderboard">
@@ -53,7 +53,7 @@ function Leaderboard() {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
 
