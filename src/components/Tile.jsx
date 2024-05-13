@@ -5,7 +5,6 @@ import { useUI } from "../context/UIStateProvider";
 
 export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const {
-    score,
     setScore,
     numberOfTiles,
     setNumberOfTiles,
