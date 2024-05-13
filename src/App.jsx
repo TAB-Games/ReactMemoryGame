@@ -10,10 +10,6 @@ import Score from "./components/Score";
 import { GameStateProvider } from "./context/GameStateProvider";
 import { UIStateProvider } from "./context/UIStateProvider";
 
-import { initializeApp } from "firebase/app";
-
-const app = initializeApp(firebaseConfig);
-
 function App() {
   return (
     <>
