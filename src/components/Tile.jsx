@@ -1,14 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { useGame } from "../context/GameStateProvider";
 import { generateRandomSequence } from "../utils/utils";
+import { useUI } from "../context/UIStateProvider";
 
-export const Tile = ({
-  key,
-  index,
-  handleTileClick,
-  isFlashing,
-  tileColor,
-}) => {
+export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const {
     score,
     setScore,
@@ -22,41 +17,44 @@ export const Tile = ({
     setSequenceLength,
     setIsGameOver,
   } = useGame();
+  const { setIsTileFlashing } = useUI();
 
   function handleNextRound() {
-    let newScore = score + 1;
-    let newNumOfTiles = numberOfTiles + 1;
-    let newSeqLength = sequenceLength + 1; // TODO: change later
+    console.log("Handling next round");
 
-    const newSequence = generateRandomSequence(newSeqLength, newNumOfTiles);
+    const newSequence = generateRandomSequence(
+      sequenceLength + 1,
+      numberOfTiles + 1
+    );
 
-    setScore(newScore);
-    setNumberOfTiles(newNumOfTiles);
-    setSequenceLength(newSeqLength);
+    setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
+    setSequenceLength((prevSeqLength) => prevSeqLength + 1);
     setCurrentSequence(newSequence);
     setSequenceIndex(0);
+    setIsTileFlashing(true);
   }
 
   function handleTileClick() {
     if (index === currentSequence[sequenceIndex]) {
       console.log("You clicked tile:", index + 1 + " Correct!");
+      setScore((prevScore) => prevScore + 1);
 
+      // if we clicked the last tile in the sequence, go next
       if (sequenceIndex === currentSequence.length - 1) {
         handleNextRound();
       } else {
-        const newIndex = sequenceIndex + 1;
-        setSequenceIndex(newIndex);
+        setSequenceIndex((prevIndex) => prevIndex + 1);
       }
     } else {
       console.log("You clicked tile:", index + 1 + " Wrong!");
-      setIsGameOver(true)
+      setIsGameOver(true);
     }
   }
 
   return (
     <div
-      key={key}
-      className="tile"
+      key={id}
+      className={"tile"}
       style={tileColor}
       onClick={handleTileClick}
     ></div>
