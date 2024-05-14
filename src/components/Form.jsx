@@ -24,11 +24,12 @@ function Form({ onSubmit }) {
 
   return (
     <form className="name-form" onSubmit={handleSubmit}>
-      <div className="name-input-label">Enter your name:</div>
+      <div className="name-input-label"></div>
       <input
         type="text"
         ref={inputRef}
         className="name-input"
+        placeholder="Enter your name"
         value={name}
         onChange={(event) => setName(event.target.value)}
         required

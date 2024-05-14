@@ -27,11 +27,6 @@ function GameBoard() {
 
   // disable/enable user input
   useEffect(() => {
-    // if (isTileFlashing) {
-    //   setDisableUserInput(true);
-    // } else {
-    //   setDisableUserInput(false);
-    // }
     setDisableUserInput((prevState) => !prevState);
   }, [isTileFlashing]);
 
@@ -145,7 +140,11 @@ function GameBoard() {
       {isGameOver && <Leaderboard />}
       {isTileFlashing && <div className="disable-input"></div>}
 
-      {!isGameOver && <div className="container">{tileArr}</div>}
+      {!isGameOver && (
+        <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
+          {tileArr}
+        </div>
+      )}
     </>
   );
 }

@@ -1,9 +1,9 @@
 import Color from "./Color";
 class Gradient {
   constructor() {
-    this.red = new Color("red", 230, 15);
-    this.green = new Color("green", 230, 1);
-    this.blue = new Color("blue", 230, 10);
+    this.red = new Color("red", 230, 29);
+    this.green = new Color("green", 230, 5);
+    this.blue = new Color("blue", 230, 13);
   }
 
   update() {

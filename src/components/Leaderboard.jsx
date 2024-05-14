@@ -31,8 +31,9 @@ function Leaderboard() {
       {isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
       {!isDisplayingForm && (
         <div className="leaderboard">
-          {allScores.slice(0, 10).map((score, index) => (
+          {allScores.map((score, index) => (
             <div key={index} className="leaderboard-row">
+              <div className="leaderboard-col">{index + 1}</div>
               <div className="leaderboard-col">{score.name}</div>
               <div className="leaderboard-col">{score.score}</div>
             </div>
