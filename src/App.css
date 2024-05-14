@@ -64,7 +64,7 @@ h1 {
   margin: auto;
   margin-top: 2.5rem;
   border: 0.0625rem solid white;
-  border-radius: 2.5rem;
+  border-radius: 1.3rem;
   background-color: rgba(164, 106, 106, 0);
   animation: regular-pulse 5s ease-in-out infinite alternate;
 }

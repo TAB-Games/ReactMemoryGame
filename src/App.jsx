@@ -16,9 +16,9 @@ function App() {
       <UIStateProvider>
         <GameStateProvider>
           <TitleHeader />
-          <Score />
           <GameBoard />
           <PlayBtn />
+          <Score />
         </GameStateProvider>
       </UIStateProvider>
     </>
