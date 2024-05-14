@@ -16,15 +16,12 @@ function Leaderboard() {
 
   async function getData() {
     {
-      console.log("Fetching data from database");
-
       const scores = await getScores();
       setAllScores(scores);
     }
   }
 
   const handleNameSubmit = (name) => {
-    console.log("Sending score to database...");
     addScore(name, score);
     setIsDisplayingForm(false);
   };
