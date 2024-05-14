@@ -83,7 +83,6 @@ function GameBoard() {
   }, [prevArrLength, isTileFlashing]);
 
   function flashTile(tileIndex) {
-    console.log("Flashing tile:", tileIndex + 1);
     if (tileIndex < 0 || tileIndex >= tileArr.length) {
       console.error("Tile array wasn't updated before", tileArr);
       return;

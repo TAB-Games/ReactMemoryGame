@@ -19,8 +19,6 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const { setIsTileFlashing } = useUI();
 
   function handleNextRound() {
-    console.log("Handling next round");
-
     const newSequence = generateRandomSequence(
       sequenceLength + 1,
       numberOfTiles + 1
@@ -35,7 +33,6 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
 
   function handleTileClick() {
     if (index === currentSequence[sequenceIndex]) {
-      console.log("You clicked tile:", index + 1 + " Correct!");
       setScore((prevScore) => prevScore + 1);
 
       // if we clicked the last tile in the sequence, go next
