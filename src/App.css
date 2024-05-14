@@ -26,14 +26,19 @@ h1 {
 
 /* SCORE DATA */
 #score {
-  font-size: 2rem;
-  font-weight: bold;
-  color: rgba(139, 181, 215, 0.6);
+  font-family: "Poppins";
+  font-size: 2.25rem;
+  /* font-weight: bold; */
+  color: rgb(44, 111, 166);
+  -webkit-text-fill-color: 3px rgb(255, 0, 0); /* Add black border with a thickness of 2px */
+
   margin: auto;
 
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
   text-align: center;
-  text-shadow: -0.0625rem -0.0625rem 0 #000000, 0.0625rem -0.0625rem 0 #00000065,
-    -0.0625rem 0.0625rem 0 #ac3838, 0.0625rem 0.0625rem 0 #00000082;
+  /* text-shadow: -0.0625rem -0.0625rem 0 #000000, 0.0625rem -0.0625rem 0 #00000065,
+    -0.0625rem 0.0625rem 0 #ac3838, 0.0625rem 0.0625rem 0 #00000082; */
 }
 
 /*CONTAINER DATA*/
@@ -53,7 +58,7 @@ h1 {
   justify-content: center;
   align-content: center;
   margin: auto;
-  margin-top: 3.125rem; /* Converted from 50px to rem */
+  margin-top: 2.5rem; /* Converted from 50px to rem */
   border: 0.0625rem solid white; /* Converted from 1px to rem */
   border-radius: 2.5rem;
   background-color: rgba(164, 106, 106, 0);
@@ -143,16 +148,16 @@ h1 {
   }
 }
 
-.game-Over {
-  font-family: "Arial", sans-serif;
+.title {
+  font-family: "Poppins";
   font-size: 2.25rem; /* Converted from 36px to rem */
-  color: #000000;
+  color: transparent; /* Make text transparent */
+  -webkit-text-stroke: 3px black; /* Add black border with a thickness of 2px */
   text-align: center;
-  text-transform: uppercase;
+
   position: relative;
   animation: neon 1.5s ease-in-out infinite alternate;
 }
-
 @keyframes neon {
   from {
     text-shadow: 0 0 0.625rem #fff, 0 0 1.25rem #fff, 0 0 1.875rem #fff,
@@ -160,7 +165,7 @@ h1 {
       0 0 5rem rgb(255, 0, 0), 0 0 6.25rem rgb(255, 0, 0), 0 0 9.375rem #0ff;
   }
   to {
-    text-shadow: 0 0 1.25rem #fff, 0 0 1.875rem rgb(255, 0, 0),
+    text-shadow: 0 0 1.25rem #fff, 0 0 1.875rem rgba(255, 0, 0, 0.564),
       0 0 2.5rem rgb(255, 0, 0), 0 0 4.375rem rgb(255, 0, 0),
       0 0 5rem rgb(255, 0, 0), 0 0 6.25rem rgb(255, 0, 0),
       0 0 9.375rem rgb(255, 0, 0), 0 0 12.5rem #0ff;
