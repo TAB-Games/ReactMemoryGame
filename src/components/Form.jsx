@@ -8,6 +8,7 @@ function Form({ onSubmit }) {
     onSubmit(name); // TODO: should validate name before onSubmit
     setName("");
   };
+
   return (
     <form className="name-form" onSubmit={handleSubmit}>
       <div className="name-input-label">Enter your name:</div>
