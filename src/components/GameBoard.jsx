@@ -116,6 +116,8 @@ function GameBoard() {
   }
 
   function createTiles() {
+    let tileOpacity = 0.05;
+
     let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
@@ -123,9 +125,10 @@ function GameBoard() {
       let tileColor = {
         backgroundColor: `rgba(${Math.abs(gradient.red.value)}, ${Math.abs(
           gradient.blue.value
-        )}, ${Math.abs(gradient.green.value)}, 0.8)`,
+        )}, ${Math.abs(gradient.green.value)}, ${tileOpacity})`,
       };
 
+      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.05 : 1; // increases tile opacity over time
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
