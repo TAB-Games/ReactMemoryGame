@@ -19,15 +19,27 @@ function GameBoard() {
     setSequenceIndex,
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
+  const [disableUserInput, setDisableUserInput] = useState(false);
 
   let gradient = new Gradient();
   let timeoutId;
   let prevArrLength = tileArr.length;
 
+  // disable/enable user input
+  useEffect(() => {
+    // if (isTileFlashing) {
+    //   setDisableUserInput(true);
+    // } else {
+    //   setDisableUserInput(false);
+    // }
+    setDisableUserInput((prevState) => !prevState);
+  }, [isTileFlashing]);
+
   useEffect(() => {
     // checks if tileArr got updated
     if (prevArrLength < tileArr.length) {
       prevArrLength = tileArr.length;
+
       setIsTileFlashing(true);
     }
   }, [tileArr]);
@@ -132,6 +144,7 @@ function GameBoard() {
   return (
     <>
       {isGameOver && <Leaderboard />}
+      {isTileFlashing && <div className="disable-input"></div>}
 
       {!isGameOver && <div className="container">{tileArr}</div>}
     </>
