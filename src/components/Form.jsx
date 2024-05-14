@@ -1,7 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 function Form({ onSubmit }) {
   const [name, setName] = useState("");
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    // Focus on the input element when the component mounts
+    try {
+      if (inputRef) {
+        inputRef.current.focus();
+      }
+    } catch (err) {
+      console.error("didn't focus", err);
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +27,7 @@ function Form({ onSubmit }) {
       <div className="name-input-label">Enter your name:</div>
       <input
         type="text"
+        ref={inputRef}
         className="name-input"
         value={name}
         onChange={(event) => setName(event.target.value)}

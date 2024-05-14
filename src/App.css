@@ -5,6 +5,8 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Disable tap highlight */
 }
 
 :root {
@@ -27,16 +29,18 @@ h1 {
 /* SCORE DATA */
 #score {
   font-family: "Poppins";
-  font-size: 2.25rem;
+  font-size: 2rem;
   /* font-weight: bold; */
-  color: rgb(44, 111, 166);
-  -webkit-text-fill-color: 3px rgb(255, 0, 0); /* Add black border with a thickness of 2px */
+  -webkit-text-stroke-color: rgba(111, 21, 21, 0.459);
+  -webkit-text-stroke-width: 1px;
 
+  margin: auto;
   margin: auto;
 
   text-transform: uppercase;
   letter-spacing: 0.03rem;
   text-align: center;
+
   /* text-shadow: -0.0625rem -0.0625rem 0 #000000, 0.0625rem -0.0625rem 0 #00000065,
     -0.0625rem 0.0625rem 0 #ac3838, 0.0625rem 0.0625rem 0 #00000082; */
 }
@@ -46,25 +50,24 @@ h1 {
   display: grid;
   grid-template-columns: repeat(
     var(--numTiles),
-    minmax(0.625rem, 3.75rem)
-  ); /* Converted from 10px, 60px to rem */
+    minmax(0, calc(100% / var(--numTiles)))
+  );
   grid-template-rows: repeat(
     var(--numTiles),
-    minmax(0.625rem, 3.75rem)
-  ); /* Converted from 10px, 60px to rem */
-  max-width: 62.5rem; /* Converted from 1000px to rem */
-  width: 28.25rem; /* Converted from 500px to rem */
-  height: 28.25rem; /* Converted from 500px to rem */
+    minmax(0, calc(100% / var(--numTiles)))
+  );
+  max-width: 62.5rem;
+  width: 25.25rem;
+  height: 25.25rem;
   justify-content: center;
   align-content: center;
   margin: auto;
-  margin-top: 2.5rem; /* Converted from 50px to rem */
-  border: 0.0625rem solid white; /* Converted from 1px to rem */
+  margin-top: 2.5rem;
+  border: 0.0625rem solid white;
   border-radius: 2.5rem;
   background-color: rgba(164, 106, 106, 0);
   animation: regular-pulse 5s ease-in-out infinite alternate;
 }
-
 .container-gameOver {
   display: flex;
   flex-direction: column;
@@ -72,7 +75,7 @@ h1 {
   justify-items: start;
   align-items: center;
   margin: auto;
-  margin-top: 3.125rem; /* Converted from 50px to rem */
+  margin-top: 10rem; /* Converted from 50px to rem */
   border-radius: 0.625rem; /* Converted from 10px to rem */
   color: white;
 }
@@ -106,19 +109,24 @@ h1 {
   display: none;
 }
 
-/* TILE DATA */
 .tile,
 .tile-flashing {
-  height: 3.125rem; /* Converted from 50px to rem */
-  width: 3.125rem; /* Converted from 50px to rem */
-  border: 0.125rem solid rgba(255, 255, 255, 0.489); /* Converted from 2px to rem */
-  cursor: pointer;
+  padding: 1rem;
+  height: 100%; /* Adjust the percentage according to your container */
+  width: 100%; /* Adjust the percentage according to your container */
+  max-height: 65%; /* Set the maximum height */
+  max-width: 65%; /* Set the maximum width */
+  border: 0.125rem solid rgba(0, 206, 62, 0.489); /* Converted from 2px to rem */
+
   margin: auto;
-  border-radius: 0.1875rem; /* Converted from 3px to rem */
+  border-radius: 0.8rem; /* Converted from 3px to rem */
+}
+
+.tile {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Disable tap highlight */
 }
 
 .tile-flashing {
-  border-radius: 0.1875rem; /* Converted from 3px to rem */
   background-color: #e4151597;
 }
 
@@ -127,9 +135,10 @@ h1 {
   animation: pulse 0.15s forwards;
 }
 
-.tile:hover {
+/* .tile:hover {
+  background-color: #e4151597;
   transform: scale(1.1);
-}
+} */
 
 @keyframes pulse {
   0% {
@@ -137,7 +146,8 @@ h1 {
     box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
   }
 
-  70% {
+  50% {
+    /* Adjusted keyframe percentage */
     transform: scale(1.1);
     box-shadow: 0 0 0 0.625rem rgba(0, 0, 0, 0); /* Converted from 10px to rem */
   }
