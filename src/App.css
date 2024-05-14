@@ -1,3 +1,29 @@
+@font-face {
+  font-family: "Bangers";
+  src: url(./fonts/Bangers-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Boogaloo";
+  src: url(./fonts/Boogaloo-Regular.ttf);
+}
+
+@font-face {
+  font-family: "FrederickatheGreat";
+  src: url(./fonts/FrederickatheGreat-Regular.ttf);
+}
+
+@font-face {
+  font-family: "ShadowsIntoLight";
+  src: url(./fonts/ShadowsIntoLight-Regular.ttf);
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: "LuckiestGuy";
+  src: url(./fonts/LuckiestGuy-Regular.ttf);
+}
+
 #root {
   max-width: 80rem; /* Converted from 1280px to rem */
   margin: 0 auto;
@@ -29,7 +55,7 @@ h1 {
 
 /* SCORE DATA */
 #score {
-  font-family: "Poppins";
+  font-family: "LuckiestGuy", sans-serif; /* Use the 'Bangers' font family */
   font-size: 2rem;
   /* font-weight: bold; */
   -webkit-text-stroke-color: rgba(111, 21, 21, 0.459);
@@ -83,7 +109,8 @@ h1 {
 
 /* PLAY BUTTON */
 .play-btn {
-  font-family: "Poppins";
+  font-family: "Boogaloo";
+  letter-spacing: 0.1rem;
   background-color: rgba(164, 106, 106, 0.682);
   display: flex;
   justify-content: center;
@@ -93,18 +120,24 @@ h1 {
   margin: auto;
   margin-top: 0.625rem; /* Converted from 10px to rem */
   padding: 0.625rem 1.25rem; /* Converted from 10px, 20px to rem */
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
+  transition-delay: 0s;
   text-align: center;
   font-size: 1.2rem;
-  font-weight: bold;
+
   text-transform: uppercase;
-  cursor: pointer;
+
   border-radius: 0.3125rem; /* Converted from 5px to rem */
   color: white;
 }
 
 .play-btn:hover {
   background-color: #33a9d463;
+  transform: scale(1.05);
+}
+
+.play-btn:active {
+  transform: scale(1.1);
 }
 
 .hide {
