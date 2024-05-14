@@ -7,6 +7,7 @@
   flex-direction: column;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Disable tap highlight */
+  user-select: none; /* no highlighting on page*/
 }
 
 :root {
@@ -82,11 +83,12 @@ h1 {
 
 /* PLAY BUTTON */
 .play-btn {
+  font-family: "Poppins";
   background-color: rgba(164, 106, 106, 0.682);
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 5rem;
+  max-width: 7rem;
   text-align: center;
   margin: auto;
   margin-top: 0.625rem; /* Converted from 10px to rem */
@@ -292,4 +294,15 @@ h1 {
   padding: 0;
   margin-bottom: 1.25rem; /* Converted from 20px to rem */
   margin-right: 1.25rem; /* Converted from 20px to rem */
+}
+
+.bottom-bar {
+  display: grid;
+  margin-top: 2rem;
+  grid-template-columns: 12.5rem auto;
+  justify-content: center;
+}
+
+.bottom-bar > * {
+  margin: 0 10px; /* Adjust margin as needed */
 }

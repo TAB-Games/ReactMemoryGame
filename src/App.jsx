@@ -17,8 +17,10 @@ function App() {
         <GameStateProvider>
           <TitleHeader />
           <GameBoard />
-          <PlayBtn />
-          <Score />
+          <div className="bottom-bar">
+            <PlayBtn />
+            <Score />
+          </div>
         </GameStateProvider>
       </UIStateProvider>
     </>
