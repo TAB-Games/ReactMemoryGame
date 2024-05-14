@@ -75,7 +75,7 @@ h1 {
   justify-items: start;
   align-items: center;
   margin: auto;
-  margin-top: 10rem; /* Converted from 50px to rem */
+
   border-radius: 0.625rem; /* Converted from 10px to rem */
   color: white;
 }
@@ -114,8 +114,8 @@ h1 {
   padding: 1rem;
   height: 100%; /* Adjust the percentage according to your container */
   width: 100%; /* Adjust the percentage according to your container */
-  max-height: 65%; /* Set the maximum height */
-  max-width: 65%; /* Set the maximum width */
+  max-height: 80%; /* Set the maximum height */
+  max-width: 80%; /* Set the maximum width */
   border: 0.125rem solid rgba(0, 206, 62, 0.489); /* Converted from 2px to rem */
 
   margin: auto;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGame } from "../context/GameStateProvider";
 
 function TitleHeader() {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("<(^.^<) | <(^.^)> | (>^.^)>");
   const { isGameOver } = useGame();
 
   useEffect(() => {
@@ -11,7 +11,7 @@ function TitleHeader() {
 
   function changeTitle() {
     if (isGameOver) {
-      const gameOver = "GameOver";
+      const gameOver = "GAME OVER";
       setTitle(gameOver);
     } else {
       const gameOver = "<(^.^<) | <(^.^)> | (>^.^)>";
