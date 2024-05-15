@@ -82,6 +82,7 @@ h1 {
 #score {
   font-family: "LuckiestGuy", sans-serif;
   font-size: 2rem;
+  color: white;
 
   -webkit-text-stroke-color: rgba(111, 21, 21, 0.459);
   -webkit-text-stroke-width: 1px;
