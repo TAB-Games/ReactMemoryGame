@@ -142,7 +142,7 @@ function GameBoard() {
         )}, ${Math.abs(gradient.green.value)}, ${tileOpacity})`,
       };
 
-      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.05 : 1; // increases tile opacity over time
+      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.1 : 1; // increases tile opacity over time
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
