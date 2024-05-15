@@ -24,6 +24,24 @@
   src: url(./fonts/LuckiestGuy-Regular.ttf);
 }
 
+/* Example media query for tablets (iPad landscape) */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  /* Tablet landscape styles here */
+  .title {
+    font-size: 1.5rem; /* Adjust font size for smaller screens */
+  }
+}
+
+/* Example media query for iPhones (portrait) */
+@media screen and (max-width: 375px) and (orientation: portrait) {
+  /* iPhone portrait styles here */
+}
+
+/* Example media query for iPhones (landscape) */
+@media screen and (max-width: 812px) and (orientation: landscape) {
+  /* iPhone landscape styles here */
+}
+
 #root {
   max-width: 80rem; /* Converted from 1280px to rem */
   margin: 0 auto;
@@ -33,6 +51,13 @@
   flex-direction: column;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* Disable tap highlight */
+
+  touch-action: manipulation; /* Improve scrolling performance on touch devices */
+
+  -ms-user-select: none; /* Internet Explorer */
+  -moz-user-select: none; /* Firefox */
+  -webkit-user-select: none; /* Safari and Chrome */
+  -webkit-touch-callout: none; /* Prevent long press context menu on mobile Safari */
   user-select: none; /* no highlighting on page*/
 }
 
@@ -55,9 +80,9 @@ h1 {
 
 /* SCORE DATA */
 #score {
-  font-family: "LuckiestGuy", sans-serif; /* Use the 'Bangers' font family */
+  font-family: "LuckiestGuy", sans-serif;
   font-size: 2rem;
-  /* font-weight: bold; */
+
   -webkit-text-stroke-color: rgba(111, 21, 21, 0.459);
   -webkit-text-stroke-width: 1px;
 
@@ -68,8 +93,8 @@ h1 {
   letter-spacing: 0.03rem;
   text-align: center;
 
-  /* text-shadow: -0.0625rem -0.0625rem 0 #000000, 0.0625rem -0.0625rem 0 #00000065,
-    -0.0625rem 0.0625rem 0 #ac3838, 0.0625rem 0.0625rem 0 #00000082; */
+  text-shadow: -0.0625rem -0.0625rem 0 #000000, 0.0625rem -0.0625rem 0 #00000065,
+    -0.0625rem 0.0625rem 0 #ac3838, 0.0625rem 0.0625rem 0 #00000082;
 }
 
 /*CONTAINER DATA*/
@@ -214,6 +239,8 @@ h1 {
   color: transparent; /* Make text transparent */
   -webkit-text-stroke: 3px black; /* Add black border with a thickness of 2px */
   text-align: center;
+  white-space: nowrap;
+  /* overflow: auto; */
 
   position: relative;
   animation: neon 1.5s ease-in-out infinite alternate;

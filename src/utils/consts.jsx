@@ -1,8 +1,8 @@
 import { getDatabase } from "firebase/database";
 import { initializeApp } from "firebase/app";
 
-export const FLASH_DURATION = 400;
-export const FLASH_INTERVAL = 800;
+export const FLASH_DURATION = 300;
+export const FLASH_INTERVAL = 600;
 export const STARTING_SEQUENCE_LENGTH = 2;
 export const STARTING_MATRIX_SIZE = 2;
 export const firebaseConfig = {
