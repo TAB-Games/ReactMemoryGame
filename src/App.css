@@ -196,7 +196,7 @@ h1 {
   border-radius: 0.8rem; /* Converted from 3px to rem */
 
   backdrop-filter: blur(10px);
-  transition: transform 0.1s ease; /* Smooth transition on hover */
+  transition: transform step-end; /* Smooth transition on hover */
 }
 
 .tile {
@@ -212,8 +212,8 @@ h1 {
 }
 
 .tile:hover {
-  background-color: #e4151597;
   transform: scale(1.05);
+  background-color: #e4151597;
 }
 
 @keyframes pulse {

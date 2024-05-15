@@ -19,7 +19,6 @@ function Form({ onSubmit }) {
         placeholder="Enter your name"
         value={name}
         onChange={(event) => setName(event.target.value)}
-        required
       />
 
       <button className="name-form-btn" type="submit">
