@@ -20,24 +20,34 @@ function GameBoard() {
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
   const [disableUserInput, setDisableUserInput] = useState(false);
+  const [isDelaying, setIsDelaying] = useState(false);
 
   let gradient = new Gradient();
   let timeoutId;
+
   let prevArrLength = tileArr.length;
 
   // disable/enable user input
   useEffect(() => {
-    setDisableUserInput((prevState) => !prevState);
+    // preRoundDelay();
+    if (isTileFlashing) {
+      setDisableUserInput(true);
+    } else {
+      setDisableUserInput(false);
+    }
   }, [isTileFlashing]);
 
-  useEffect(() => {
-    // checks if tileArr got updated
-    if (prevArrLength < tileArr.length) {
-      prevArrLength = tileArr.length;
-
-      setIsTileFlashing(true);
-    }
-  }, [tileArr]);
+  // useEffect(() => {
+  //   // checks if tileArr got updated
+  //   if (prevArrLength < tileArr.length) {
+  //     prevArrLength = tileArr.length;
+  //     console.log("waited or na?");
+  //     setTimeout(() => {
+  //       console.log("waited or na?");
+  //       setIsTileFlashing(true);
+  //     }, 10000);
+  //   }
+  // }, [tileArr]);
 
   useEffect(() => {
     createTiles();
@@ -52,26 +62,30 @@ function GameBoard() {
     let index = 0;
     let timeoutIds = [];
 
-    const flashTiles = () => {
-      if (tileArr.length === numberOfTiles * numberOfTiles) {
-        if (index < currentSequence.length) {
-          flashTile(currentSequence[index]);
-          index++;
-          timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
-        } else {
-          setSequenceIndex(0);
-          setIsTileFlashing(false); // Stop flashing when all tiles have flashed
+    // this timeout is responsible for preround delay
+    setTimeout(() => {
+      const flashTiles = () => {
+        if (tileArr.length === numberOfTiles * numberOfTiles) {
+          if (index < currentSequence.length) {
+            flashTile(currentSequence[index]);
+            index++;
+            timeoutIds.push(setTimeout(flashTiles, FLASH_INTERVAL)); // Flash the next tile after 500ms
+          } else {
+            setSequenceIndex(0);
+            setIsTileFlashing(false); // Stop flashing when all tiles have flashed
+          }
+        }
+      };
+
+      if (tileArr.length && isTileFlashing) {
+        try {
+          flashTiles();
+        } catch (err) {
+          console.error("Error flashing tiles", err);
         }
       }
-    };
+    }, 500);
 
-    if (tileArr.length && isTileFlashing) {
-      try {
-        flashTiles();
-      } catch (err) {
-        console.error("Error flashing tiles", err);
-      }
-    }
     return () => {
       timeoutIds.forEach(clearTimeout);
     };
@@ -116,7 +130,7 @@ function GameBoard() {
   }
 
   function createTiles() {
-    let tileOpacity = 0.05;
+    let tileOpacity = 0.05; // increment opacity over time
 
     let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
@@ -128,7 +142,7 @@ function GameBoard() {
         )}, ${Math.abs(gradient.green.value)}, ${tileOpacity})`,
       };
 
-      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.05 : 1; // increases tile opacity over time
+      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.1 : 1; // increases tile opacity over time
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }

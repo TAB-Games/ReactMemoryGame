@@ -18,6 +18,12 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   } = useGame();
   const { setIsTileFlashing } = useUI();
 
+  // CURRENT GOAL:
+  // Min: 2 + i
+  // Max: numTiles - 2
+
+  //
+
   function handleNextRound() {
     const newSequence = generateRandomSequence(
       sequenceLength + 1,
@@ -25,7 +31,35 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
     );
 
     setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
+
     setSequenceLength((prevSeqLength) => prevSeqLength + 1);
+    setCurrentSequence(newSequence);
+    setSequenceIndex(0);
+    setIsTileFlashing(true);
+  }
+
+  function incrementSequence() {
+    let newSequence;
+    let numTiles = numberOfTiles * numberOfTiles;
+
+    // end is reached, generate more tiles
+    if (sequenceLength >= Math.ceil(numTiles / 2)) {
+      console.log("if", numberOfTiles);
+      setSequenceLength(numberOfTiles + 1);
+
+      newSequence = generateRandomSequence(
+        numberOfTiles + 1,
+        numberOfTiles + 1
+      );
+
+      setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
+      // otherwise increase sequence length only
+    } else {
+      console.log("else");
+      newSequence = generateRandomSequence(sequenceLength + 1, numberOfTiles);
+      setSequenceLength((prevSeqLength) => prevSeqLength + 1);
+    }
+
     setCurrentSequence(newSequence);
     setSequenceIndex(0);
     setIsTileFlashing(true);
@@ -37,7 +71,7 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
 
       // if we clicked the last tile in the sequence, go next
       if (sequenceIndex === currentSequence.length - 1) {
-        handleNextRound();
+        incrementSequence();
       } else {
         setSequenceIndex((prevIndex) => prevIndex + 1);
       }
