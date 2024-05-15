@@ -54,6 +54,6 @@ export async function getScores() {
       }
     });
   });
-  allScores.sort((a, b) => b.score - a.score).splice(10);
+  allScores.sort((a, b) => b.score - a.score);
   return allScores;
 }

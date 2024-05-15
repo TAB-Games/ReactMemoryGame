@@ -10,3 +10,8 @@
 1. In root directory, create a new file called `.env.local`
 2. Copy keys from `.env` file
 3. Paste into the `.env.local` file and fill in with values
+
+### Deploy
+
+1. `npm run build`
+2. `npm run deploy`

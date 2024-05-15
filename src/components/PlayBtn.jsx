@@ -7,10 +7,10 @@ import {
 } from "../utils/consts";
 
 export const PlayBtn = () => {
+  const { isGameOver } = useGame();
   const {
     setCurrentSequence,
     setNumberOfTiles,
-    isGameOver,
     setIsGameOver,
     setScore,
     setSequenceLength,
@@ -31,7 +31,7 @@ export const PlayBtn = () => {
 
   return (
     <div className="play-btn" onClick={handlePlay}>
-      Play
+      {!isGameOver ? "Play" : "Try Again"}
     </div>
   );
 };

@@ -19,15 +19,22 @@ function GameBoard() {
     setSequenceIndex,
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
+  const [disableUserInput, setDisableUserInput] = useState(false);
 
   let gradient = new Gradient();
   let timeoutId;
   let prevArrLength = tileArr.length;
 
+  // disable/enable user input
+  useEffect(() => {
+    setDisableUserInput((prevState) => !prevState);
+  }, [isTileFlashing]);
+
   useEffect(() => {
     // checks if tileArr got updated
     if (prevArrLength < tileArr.length) {
       prevArrLength = tileArr.length;
+
       setIsTileFlashing(true);
     }
   }, [tileArr]);
@@ -71,7 +78,6 @@ function GameBoard() {
   }, [prevArrLength, isTileFlashing]);
 
   function flashTile(tileIndex) {
-    console.log("Flashing tile:", tileIndex + 1);
     if (tileIndex < 0 || tileIndex >= tileArr.length) {
       console.error("Tile array wasn't updated before", tileArr);
       return;
@@ -110,6 +116,8 @@ function GameBoard() {
   }
 
   function createTiles() {
+    let tileOpacity = 0.05;
+
     let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
       let id = generateRandomId();
@@ -117,9 +125,10 @@ function GameBoard() {
       let tileColor = {
         backgroundColor: `rgba(${Math.abs(gradient.red.value)}, ${Math.abs(
           gradient.blue.value
-        )}, ${Math.abs(gradient.green.value)}, 0.8)`,
+        )}, ${Math.abs(gradient.green.value)}, ${tileOpacity})`,
       };
 
+      tileOpacity = tileOpacity < 1 ? tileOpacity + 0.05 : 1; // increases tile opacity over time
       newTileArr.push(<Tile key={id} index={i} tileColor={tileColor} />);
       gradient.update();
     }
@@ -132,8 +141,13 @@ function GameBoard() {
   return (
     <>
       {isGameOver && <Leaderboard />}
+      {isTileFlashing && <div className="disable-input"></div>}
 
-      {!isGameOver && <div className="container">{tileArr}</div>}
+      {!isGameOver && (
+        <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
+          {tileArr}
+        </div>
+      )}
     </>
   );
 }
