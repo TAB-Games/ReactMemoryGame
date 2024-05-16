@@ -483,7 +483,7 @@ title-gameover {
 
   .leaderboard {
     max-width: 90vh;
-    max-height: 70vh;
+    max-height: 67vh;
     /* margin-top: 1rem; */
     margin: 1rem auto;
   }
@@ -515,6 +515,7 @@ title-gameover {
 
   .bottom-bar {
     margin-top: 1rem;
+    margin-bottom: 1rem;
     max-width: 90%;
     grid-template-columns: 10rem auto;
   }
