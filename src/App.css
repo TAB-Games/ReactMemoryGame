@@ -234,19 +234,22 @@ h1 {
   }
 }
 
-.title {
-  font-family: "Poppins";
+.title,
+title-gameover {
+  /* font-family: "Poppins"; */
   font-size: 2.25rem; /* Converted from 36px to rem */
-  color: transparent; /* Make text transparent */
-  -webkit-text-stroke: 3px black; /* Add black border with a thickness of 2px */
+  color: rgb(149, 188, 172);
+  /* color: transparent; */
+  /* -webkit-text-stroke: 3px black; Add black border with a thickness of 2px */
   text-align: center;
   white-space: nowrap;
   /* overflow: auto; */
+  text-transform: lowercase;
 
   position: relative;
   animation: neon 1.5s ease-in-out infinite alternate;
 }
-@keyframes neon {
+/* @keyframes neon {
   from {
     text-shadow: 0 0 0.625rem #fff, 0 0 1.25rem #fff, 0 0 1.875rem #fff,
       0 0 2.5rem rgb(255, 0, 0), 0 0 4.375rem rgb(255, 0, 0),
@@ -258,13 +261,18 @@ h1 {
       0 0 5rem rgb(255, 0, 0), 0 0 6.25rem rgb(255, 0, 0),
       0 0 9.375rem rgb(255, 0, 0), 0 0 12.5rem #0ff;
   }
+} */
+.title-gameover {
 }
 
 .finalScore {
   margin: 0.9375rem; /* Converted from 15px to rem */
 }
 
-/* LEADERBOARD DATA */
+.leaderboard-container {
+  position: relative;
+}
+
 .leaderboard {
   display: flex;
   flex-direction: column;
@@ -285,9 +293,51 @@ h1 {
   animation: regular-pulse 5s ease-in-out infinite alternate;
 
   scrollbar-gutter: auto;
-  /* scrollbar-width: none; */
-  scrollbar-color: rgba(213, 10, 166, 0.723) rgba(58, 11, 76, 0.268);
+  scroll-snap-type: y proximity;
+  scrollbar-color: rgba(0, 0, 0, 0) rgba(24, 0, 34, 0.125);
   scroll-behavior: smooth;
+}
+
+.scroll-indicator-down,
+.scroll-indicator-up {
+  position: absolute;
+  right: 8px;
+  opacity: 0.75;
+}
+
+.scroll-indicator-down {
+  height: 50px;
+
+  bottom: 50px;
+
+  animation: bounce-down 4s infinite; /* Apply the bounce animation */
+}
+
+.scroll-indicator-up {
+  height: 50px;
+  top: 50px;
+
+  animation: bounce-up 4s infinite; /* Apply the bounce animation */
+}
+
+@keyframes bounce-down {
+  0%,
+  100% {
+    transform: translateY(0) rotate(90deg); /* Start and end position */
+  }
+  50% {
+    transform: translateY(-10px) rotate(90deg); /* Bounce up */
+  }
+}
+
+@keyframes bounce-up {
+  0%,
+  100% {
+    transform: translateY(0) rotate(270deg); /* Start and end position */
+  }
+  50% {
+    transform: translateY(+10px) rotate(270deg); /* Bounce up */
+  }
 }
 
 @keyframes regular-pulse {
