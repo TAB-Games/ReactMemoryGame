@@ -5,6 +5,7 @@ import { generateRandomSequence } from "../utils/utils";
 import { useUI } from "../context/UIStateProvider";
 import correct_12 from "./../assets/audio-sfx/correct_12.mp3";
 import wrong_01 from "./../assets/audio-sfx/wrong_01.mp3";
+import { playCorrect, playWrong } from "../utils/audio";
 
 export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const {
@@ -47,19 +48,11 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   }
 
   function handleTileClick() {
-    // TODO: make audio utility to handle these more cleanly
-    const correct_sfx = new Howl({
-      src: [correct_12],
-      volume: 0.1,
-    });
-    const wrong_sfx = new Howl({
-      src: [wrong_01],
-      volume: 0.1,
-    });
+    // TODO: make an audio mute button
 
     if (index === currentSequence[sequenceIndex]) {
-      correct_sfx.play();
-      console.log("play");
+      playCorrect(index, numberOfTiles);
+
       setScore((prevScore) => prevScore + 1);
 
       // if we clicked the last tile in the sequence, go next
@@ -69,9 +62,13 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
         setSequenceIndex((prevIndex) => prevIndex + 1);
       }
     } else {
-      wrong_sfx.play();
-      console.log("You clicked tile:", index + 1 + " Wrong!");
-      setIsGameOver(true);
+      try {
+        playWrong();
+        console.log("You clicked tile:", index + 1 + " Wrong!");
+        setIsGameOver(true);
+      } catch (err) {
+        console.error("Failure finding wrong tile audio");
+      }
     }
   }
 
