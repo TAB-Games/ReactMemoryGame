@@ -21,6 +21,20 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   } = useGame();
   const { setIsTileFlashing } = useUI();
 
+  function handleNextRound() {
+    const newSequence = generateRandomSequence(
+      sequenceLength + 1,
+      numberOfTiles + 1
+    );
+
+    setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
+
+    setSequenceLength((prevSeqLength) => prevSeqLength + 1);
+    setCurrentSequence(newSequence);
+    setSequenceIndex(0);
+    setIsTileFlashing(true);
+  }
+
   function incrementSequence() {
     let newSequence;
     let numTiles = numberOfTiles * numberOfTiles;

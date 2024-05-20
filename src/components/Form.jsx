@@ -10,7 +10,6 @@ function Form({ onSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     let regex = /^[a-zA-Z0-9]{1,11}$/g
-    let profan = ["fuck","bitch","ni**a",]
     if(regex.test(name) && !badwords.check(name)){
       onSubmit(name); // TODO: should validate name before onSubmit
       setName("");
@@ -20,6 +19,7 @@ function Form({ onSubmit }) {
   };
 
   return ( <>
+    
     {badwords.check(name) && <div>No Bad Words!</div>}
     <form className="name-form" onSubmit={handleSubmit}>
       <div className="name-input-label"></div>
