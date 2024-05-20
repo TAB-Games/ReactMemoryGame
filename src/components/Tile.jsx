@@ -18,12 +18,6 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   } = useGame();
   const { setIsTileFlashing } = useUI();
 
-  // CURRENT GOAL:
-  // Min: 2 + i
-  // Max: numTiles - 2
-
-  //
-
   function handleNextRound() {
     const newSequence = generateRandomSequence(
       sequenceLength + 1,

@@ -3,16 +3,18 @@ import Form from "./Form";
 import { getScores, addScore } from "../utils/firebase";
 
 import { useGame } from "../context/GameStateProvider";
-import { database } from "../utils/consts";
 
 function Leaderboard() {
-  const { isGameOver, score } = useGame();
+  const { score } = useGame();
   const [isDisplayingForm, setIsDisplayingForm] = useState(true);
   const [allScores, setAllScores] = useState([]);
 
   useEffect(() => {
     getData();
-  }, [isDisplayingForm]);
+    if (score === 0) {
+      setIsDisplayingForm(false);
+    }
+  }, []);
 
   async function getData() {
     {
@@ -22,13 +24,18 @@ function Leaderboard() {
   }
 
   const handleNameSubmit = (name) => {
-    addScore(name, score);
-    setIsDisplayingForm(false);
+    if (score === 0) {
+      setIsDisplayingForm(false);
+    } else {
+      addScore(name, score);
+      getData();
+      setIsDisplayingForm(false);
+    }
   };
 
   return (
     <div className="container-gameOver">
-      {isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
+      {score !== 0 && isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
       {!isDisplayingForm && (
         <div className="leaderboard">
           {allScores.map((score, index) => (
