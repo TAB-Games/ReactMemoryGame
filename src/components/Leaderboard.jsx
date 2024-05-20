@@ -28,7 +28,10 @@ function Leaderboard() {
         setCanScrollDown(false);
       }
     }
-  }, [isDisplayingForm]);
+    if (score === 0) {
+      setIsDisplayingForm(false);
+    }
+  }, []);
 
   async function getData() {
     {
@@ -38,13 +41,18 @@ function Leaderboard() {
   }
 
   const handleNameSubmit = (name) => {
-    addScore(name, score);
-    setIsDisplayingForm(false);
+    if (score === 0) {
+      setIsDisplayingForm(false);
+    } else {
+      addScore(name, score);
+      getData();
+      setIsDisplayingForm(false);
+    }
   };
 
   return (
     <div className="container-gameOver">
-      {isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
+      {score !== 0 && isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
       {!isDisplayingForm && (
         <div className="leaderboard-container">
           <div className="leaderboard" ref={leaderboardRef}>

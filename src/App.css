@@ -138,7 +138,6 @@ h1 {
   justify-content: center;
   align-items: center;
   max-width: 9rem;
-  text-align: center;
   margin: auto;
   margin-top: 0.625rem; /* Converted from 10px to rem */
   padding: 0.325rem 0.1rem; /* Converted from 10px, 20px to rem */
@@ -434,6 +433,56 @@ title-gameover {
 
   backdrop-filter: blur(0.1px);
   z-index: 999;
+}
+
+.level-board {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 400px;
+  margin-top: 50px;
+}
+
+.level-picker {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-family: "Boogaloo";
+  letter-spacing: 0.1rem;
+  transition: background-color 0.2s ease;
+  transition-delay: 0s;
+  font-size: 1.2rem;
+  background-color: rgba(164, 106, 106, 0.682);
+  margin: 8px;
+  padding: 5px;
+}
+
+.level-picker:hover {
+  background-color: #33a9d463;
+}
+
+.main-menu {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+}
+.menu-option {
+  margin: 8px;
+  padding: 5px;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
+  font-family: "Boogaloo";
+  letter-spacing: 0.1rem;
+  transition: background-color 0.2s ease;
+  transition-delay: 0s;
+  font-size: 1.2rem;
+  background-color: rgba(164, 106, 106, 0.682);
+}
+
+.menu-option:hover {
+  background-color: #33a9d463;
 }
 
 /* Media queries for responsiveness */

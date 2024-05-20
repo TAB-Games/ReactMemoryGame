@@ -10,6 +10,10 @@ import Gradient from "../models/Gradient";
 import { gradient } from "../context/Gradient";
 import { useUI } from "../context/UIStateProvider";
 import { FLASH_DURATION, FLASH_INTERVAL } from "../utils/consts";
+import LevelBoard from "./LevelBoard";
+import { PlayBtn } from "./PlayBtn";
+import Score from "./Score";
+import MainMenu from "./MainMenu";
 
 function GameBoard() {
   const {
@@ -18,6 +22,9 @@ function GameBoard() {
     isGameOver,
     sequenceIndex,
     setSequenceIndex,
+    gameStart,
+    inMenu,
+    inLevelPicker,
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
   const [disableUserInput, setDisableUserInput] = useState(false);
@@ -144,13 +151,30 @@ function GameBoard() {
 
   return (
     <>
-      {isGameOver && <Leaderboard />}
-      {isTileFlashing && <div className="disable-input"></div>}
+      <>
+        {inMenu && <MainMenu />}
+        {inLevelPicker && <LevelBoard />}
+      </>
+      {gameStart && (
+        <>
+          {isGameOver && <Leaderboard />}
+          {isTileFlashing && <div className="disable-input"></div>}
 
-      {!isGameOver && (
-        <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
-          {tileArr}
-        </div>
+          {!isGameOver && (
+            <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
+              {tileArr}
+            </div>
+          )}
+
+          {gameStart && (
+            <>
+              <div className="bottom-bar">
+                <PlayBtn />
+                <Score />
+              </div>
+            </>
+          )}
+        </>
       )}
     </>
   );
