@@ -14,13 +14,14 @@ export const PlayBtn = () => {
     setIsGameOver,
     setScore,
     setSequenceLength,
+    level,
   } = useGame();
   const { setIsTileFlashing } = useUI();
 
   function handlePlay() {
     // TODO: Initialize starting values better
     setSequenceLength(STARTING_SEQUENCE_LENGTH);
-    setNumberOfTiles(STARTING_MATRIX_SIZE);
+    setNumberOfTiles(() => STARTING_MATRIX_SIZE * level);
     setCurrentSequence(
       generateRandomSequence(STARTING_SEQUENCE_LENGTH, STARTING_MATRIX_SIZE)
     );
