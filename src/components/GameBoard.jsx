@@ -7,8 +7,13 @@ import { useGame } from "../context/GameStateProvider";
 import Leaderboard from "./Leaderboard";
 
 import Gradient from "../models/Gradient";
+import { gradient } from "../context/Gradient";
 import { useUI } from "../context/UIStateProvider";
 import { FLASH_DURATION, FLASH_INTERVAL } from "../utils/consts";
+import LevelBoard from "./LevelBoard";
+import { PlayBtn } from "./PlayBtn";
+import Score from "./Score";
+import MainMenu from "./MainMenu";
 
 function GameBoard() {
   const {
@@ -17,12 +22,15 @@ function GameBoard() {
     isGameOver,
     sequenceIndex,
     setSequenceIndex,
+    gameStart,
+    inMenu,
+    inLevelPicker,
   } = useGame();
   const { isTileFlashing, setIsTileFlashing, tileArr, setTileArr } = useUI();
   const [disableUserInput, setDisableUserInput] = useState(false);
   const [isDelaying, setIsDelaying] = useState(false);
 
-  let gradient = new Gradient();
+  // const gradient = new Gradient();
   let timeoutId;
 
   let prevArrLength = tileArr.length;
@@ -36,18 +44,6 @@ function GameBoard() {
       setDisableUserInput(false);
     }
   }, [isTileFlashing]);
-
-  // useEffect(() => {
-  //   // checks if tileArr got updated
-  //   if (prevArrLength < tileArr.length) {
-  //     prevArrLength = tileArr.length;
-  //     console.log("waited or na?");
-  //     setTimeout(() => {
-  //       console.log("waited or na?");
-  //       setIsTileFlashing(true);
-  //     }, 10000);
-  //   }
-  // }, [tileArr]);
 
   useEffect(() => {
     createTiles();
@@ -130,7 +126,7 @@ function GameBoard() {
   }
 
   function createTiles() {
-    let tileOpacity = 0.05; // increment opacity over time
+    let tileOpacity = 0.05; // we will increment opacity over time
 
     let newTileArr = [];
     for (let i = 0; i < numberOfTiles * numberOfTiles; i++) {
@@ -154,13 +150,30 @@ function GameBoard() {
 
   return (
     <>
-      {isGameOver && <Leaderboard />}
-      {isTileFlashing && <div className="disable-input"></div>}
+      <>
+        {inMenu && <MainMenu />}
+        {inLevelPicker && <LevelBoard />}
+      </>
+      {gameStart && (
+        <>
+          {isGameOver && <Leaderboard />}
+          {isTileFlashing && <div className="disable-input"></div>}
 
-      {!isGameOver && (
-        <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
-          {tileArr}
-        </div>
+          {!isGameOver && (
+            <div className={`container${!disableUserInput ? "" : `-disabled`}`}>
+              {tileArr}
+            </div>
+          )}
+
+          {gameStart && (
+            <>
+              <div className="bottom-bar">
+                <PlayBtn />
+                <Score />
+              </div>
+            </>
+          )}
+        </>
       )}
     </>
   );
