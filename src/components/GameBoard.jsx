@@ -14,6 +14,7 @@ import LevelBoard from "./LevelBoard";
 import { PlayBtn } from "./PlayBtn";
 import Score from "./Score";
 import MainMenu from "./MainMenu";
+import NavBtn from "./NavBtn";
 
 function GameBoard() {
   const {
@@ -155,6 +156,7 @@ function GameBoard() {
         {inMenu && <MainMenu />}
         {inLevelPicker && <LevelBoard />}
       </>
+
       {gameStart && (
         <>
           {isGameOver && <Leaderboard />}
@@ -170,7 +172,8 @@ function GameBoard() {
             <>
               <div className="bottom-bar">
                 <PlayBtn />
-                <Score />
+
+                <NavBtn />
               </div>
             </>
           )}

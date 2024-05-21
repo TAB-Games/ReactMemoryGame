@@ -4,6 +4,7 @@ import { getScores, addScore } from "../utils/firebase";
 import arrow from "../assets/icons/arrow.png";
 
 import { useGame } from "../context/GameStateProvider";
+import Score from "./Score";
 
 function Leaderboard() {
   const leaderboardRef = useRef(null);
@@ -52,6 +53,7 @@ function Leaderboard() {
 
   return (
     <div className="container-gameOver">
+      <Score />
       {score !== 0 && isDisplayingForm && <Form onSubmit={handleNameSubmit} />}
       {!isDisplayingForm && (
         <div className="leaderboard-container">

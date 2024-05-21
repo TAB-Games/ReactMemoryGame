@@ -23,7 +23,10 @@ export const PlayBtn = () => {
     setSequenceLength(STARTING_SEQUENCE_LENGTH);
     setNumberOfTiles(() => STARTING_MATRIX_SIZE * level);
     setCurrentSequence(
-      generateRandomSequence(STARTING_SEQUENCE_LENGTH, STARTING_MATRIX_SIZE)
+      generateRandomSequence(
+        STARTING_SEQUENCE_LENGTH,
+        STARTING_MATRIX_SIZE * level
+      )
     );
     setScore(0);
     setIsGameOver(false);

@@ -78,6 +78,8 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
       className={"tile"}
       style={tileColor}
       onClick={handleTileClick}
-    ></div>
+    >
+      {index + 1}
+    </div>
   );
 };
