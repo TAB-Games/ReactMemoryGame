@@ -173,7 +173,7 @@ function GameBoard() {
               <div className="bottom-bar">
                 <PlayBtn />
 
-                <NavBtn />
+                {isGameOver ? <NavBtn /> : <Score />}
               </div>
             </>
           )}
