@@ -47,6 +47,7 @@ function GameBoard() {
 
   useEffect(() => {
     createTiles();
+    console.log("YooYo", tileArr);
     document.documentElement.style.setProperty("--numTiles", numberOfTiles);
   }, [numberOfTiles]); // Regenerate tiles whenever numberOfTiles changes
 
