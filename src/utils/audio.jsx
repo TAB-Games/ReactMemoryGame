@@ -38,8 +38,11 @@ export const playCorrect = (index, numTiles) => {
   //   playRandomCorrectSound();
   //   const maths = index / numTiles;
   //   SFX_CORRECT.play();
-  console.log("INDEXERINO", index);
-  correctSoundsMap[index % numTiles].play();
+  console.log("SOUND MAP", correctSoundsMap);
+  console.log("MODULO", index % (correctSoundFiles.length - 1));
+  console.log("INDEXERINO_INDEX", index);
+  console.log("INDEXERINO_numTiles", numTiles);
+  correctSoundsMap[index % (correctSoundFiles.length - 1)].play();
 };
 
 export const playWrong = () => {

@@ -14,6 +14,7 @@ import LevelBoard from "./LevelBoard";
 import { PlayBtn } from "./PlayBtn";
 import Score from "./Score";
 import MainMenu from "./MainMenu";
+import NavBtn from "./NavBtn";
 
 function GameBoard() {
   const {
@@ -30,7 +31,6 @@ function GameBoard() {
   const [disableUserInput, setDisableUserInput] = useState(false);
   const [isDelaying, setIsDelaying] = useState(false);
 
-  // const gradient = new Gradient();
   let timeoutId;
 
   let prevArrLength = tileArr.length;
@@ -155,6 +155,7 @@ function GameBoard() {
         {inMenu && <MainMenu />}
         {inLevelPicker && <LevelBoard />}
       </>
+
       {gameStart && (
         <>
           {isGameOver && <Leaderboard />}
@@ -170,7 +171,8 @@ function GameBoard() {
             <>
               <div className="bottom-bar">
                 <PlayBtn />
-                <Score />
+
+                {isGameOver ? <NavBtn /> : <Score />}
               </div>
             </>
           )}
