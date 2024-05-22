@@ -31,7 +31,6 @@ function GameBoard() {
   const [disableUserInput, setDisableUserInput] = useState(false);
   const [isDelaying, setIsDelaying] = useState(false);
 
-  // const gradient = new Gradient();
   let timeoutId;
 
   let prevArrLength = tileArr.length;
