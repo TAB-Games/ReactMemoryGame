@@ -5,6 +5,7 @@ import {
   STARTING_MATRIX_SIZE,
   STARTING_SEQUENCE_LENGTH,
 } from "../utils/consts";
+import { initSynth } from "../utils/synth";
 
 export const PlayBtn = () => {
   const { isGameOver } = useGame();
@@ -19,7 +20,7 @@ export const PlayBtn = () => {
   const { setIsTileFlashing } = useUI();
 
   function handlePlay() {
-    // TODO: Initialize starting values better
+    initSynth();
     setSequenceLength(STARTING_SEQUENCE_LENGTH);
     setNumberOfTiles(() => STARTING_MATRIX_SIZE * level);
     setCurrentSequence(

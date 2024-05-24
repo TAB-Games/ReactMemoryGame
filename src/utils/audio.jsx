@@ -28,17 +28,7 @@ const correctSoundsMap = correctSoundFiles.map(
     })
 );
 
-// Function to play a random correct sound
-function playRandomCorrectSound() {
-  const randomIndex = Math.floor(Math.random() * correctSoundsMap.length);
-  correctSoundsMap[randomIndex].play();
-}
-
 export const playCorrect = (index, numTiles) => {
-  //   playRandomCorrectSound();
-  //   const maths = index / numTiles;
-  //   SFX_CORRECT.play();
-  console.log("INDEXERINO", index);
   correctSoundsMap[index % numTiles].play();
 };
 

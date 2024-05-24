@@ -5,7 +5,8 @@ import { generateRandomSequence } from "../utils/utils";
 import { useUI } from "../context/UIStateProvider";
 import correct_12 from "./../assets/audio-sfx/correct_12.mp3";
 import wrong_01 from "./../assets/audio-sfx/wrong_01.mp3";
-import { playCorrect, playWrong } from "../utils/audio";
+import { playWrong } from "../utils/audio";
+import { playNote } from "../utils/synth";
 
 export const Tile = ({ id, index, handleTileClick, tileColor }) => {
   const {
@@ -51,7 +52,7 @@ export const Tile = ({ id, index, handleTileClick, tileColor }) => {
     // TODO: make an audio mute button
 
     if (index === currentSequence[sequenceIndex]) {
-      playCorrect(index, numberOfTiles);
+      playNote(index, numberOfTiles);
 
       setScore((prevScore) => prevScore + 1);
 
