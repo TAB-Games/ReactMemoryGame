@@ -62,7 +62,10 @@ const determineNoteToPlay = (tileIndex = 0, numTiles) => {
 
   if (tileIndex + 1 > numTiles) {
     acc = Math.floor((tileIndex + 1) / numTiles);
-    octave = Math.max(2, octave - Math.floor(tileIndex / 7));
+    octave = Math.max(
+      2,
+      octave - Math.floor(tileIndex / SCALES.C_MAJOR.length)
+    );
   }
 
   const note = SCALES.C_MAJOR[(tileIndex + acc) % SCALES.C_MAJOR.length];
