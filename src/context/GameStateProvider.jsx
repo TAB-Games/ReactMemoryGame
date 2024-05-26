@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useReducer, useState } from "react";
 import {
   STARTING_MATRIX_SIZE,
   STARTING_SEQUENCE_LENGTH,
@@ -21,6 +21,9 @@ export const GameStateProvider = ({ children }) => {
   const [inMenu, setInMenu] = useState(true);
   const [level, setLevel] = useState(0);
   const [inGame, setInGame] = useState(false);
+
+  // TODO: to handle level select with reducer. ex.
+  // const [state, dispatch] = useReducer(gameReducer, initialState)
 
   return (
     <GameContext.Provider
