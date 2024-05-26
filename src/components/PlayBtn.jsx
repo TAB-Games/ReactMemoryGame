@@ -5,6 +5,7 @@ import {
   STARTING_MATRIX_SIZE,
   STARTING_SEQUENCE_LENGTH,
 } from "../utils/consts";
+
 import { initSynth } from "../utils/synth";
 
 export const PlayBtn = () => {

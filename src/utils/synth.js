@@ -25,7 +25,6 @@ export const initSynth = () => {
 };
 
 export const playNote = (tileIndex, numberOfTiles) => {
-  const note = "C5";
   if (!synth) {
     initSynth();
   }

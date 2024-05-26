@@ -7,16 +7,19 @@ import GameBoard from "./components/GameBoard";
 
 import { GameStateProvider } from "./context/GameStateProvider";
 import { UIStateProvider } from "./context/UIStateProvider";
-import AudioSynthesizer from "./components/AudioSynthesizer";
+import AudioSynthesizer from "./components/AudioSynthesizer.jsx";
+import Container from "./components/Container.jsx";
 
 function App() {
   return (
     <>
       <UIStateProvider>
         <GameStateProvider>
-          <AudioSynthesizer />
-          <TitleHeader />
-          <GameBoard />
+          <Container>
+            <AudioSynthesizer />
+            <TitleHeader />
+            <GameBoard />
+          </Container>
         </GameStateProvider>
       </UIStateProvider>
     </>

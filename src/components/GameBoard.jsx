@@ -22,7 +22,7 @@ function GameBoard() {
     isGameOver,
     sequenceIndex,
     setSequenceIndex,
-    gameStart,
+    inGame,
     inMenu,
     inLevelPicker,
   } = useGame();
@@ -151,11 +151,7 @@ function GameBoard() {
 
   return (
     <>
-      <>
-        {inMenu && <MainMenu />}
-        {inLevelPicker && <LevelBoard />}
-      </>
-      {gameStart && (
+      {inGame && (
         <>
           {isGameOver && <Leaderboard />}
           {isTileFlashing && <div className="disable-input"></div>}
@@ -166,7 +162,7 @@ function GameBoard() {
             </div>
           )}
 
-          {gameStart && (
+          {inGame && (
             <>
               <div className="bottom-bar">
                 <PlayBtn />

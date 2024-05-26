@@ -16,10 +16,11 @@ export const GameStateProvider = ({ children }) => {
   );
   const [sequenceIndex, setSequenceIndex] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [gameStart, setGameStart] = useState(false);
+
   const [inLevelPicker, setInLevelPicker] = useState(false);
   const [inMenu, setInMenu] = useState(true);
   const [level, setLevel] = useState(0);
+  const [inGame, setInGame] = useState(false);
 
   return (
     <GameContext.Provider
@@ -36,14 +37,15 @@ export const GameStateProvider = ({ children }) => {
         setSequenceLength,
         isGameOver,
         setIsGameOver,
-        gameStart,
-        setGameStart,
+
         level,
         setLevel,
         inLevelPicker,
         setInLevelPicker,
         inMenu,
         setInMenu,
+        inGame,
+        setInGame,
       }}
     >
       {children}

@@ -1,41 +1,85 @@
-import React, { useEffect, useState } from "react";
-import {
-  initSynth,
-  playNote,
-  disposeSynth,
-  isToneLoaded,
-} from "../utils/synth";
+import React, { useContext, useEffect } from "react";
+import { Howl, Howler } from "howler";
+import { useGame } from "../context/GameStateProvider";
+import { generateRandomSequence } from "../utils/utils";
+import { useUI } from "../context/UIStateProvider";
+import correct_12 from "./../assets/audio-sfx/correct_12.mp3";
+import wrong_01 from "./../assets/audio-sfx/wrong_01.mp3";
+import { playWrong } from "../utils/audio";
+import { playNote } from "../utils/synth";
 
-const AudioSynthesizer = () => {
-  const [isReady, setIsReady] = useState(false);
+const AudioSynthesizer = ({ id, index, handleTileClick, tileColor }) => {
+  const {
+    setScore,
+    numberOfTiles,
+    setNumberOfTiles,
+    currentSequence,
+    sequenceIndex,
+    setSequenceIndex,
+    setCurrentSequence,
+    sequenceLength,
+    setSequenceLength,
+    setIsGameOver,
+  } = useGame();
+  const { setIsTileFlashing } = useUI();
 
-  useEffect(() => {
-    const setupSynth = async () => {
-      await isToneLoaded();
-      initSynth();
-      setIsReady(true);
-      console.log("synth initialized");
-    };
+  function incrementSequence() {
+    let newSequence;
+    let numTiles = numberOfTiles * numberOfTiles;
 
-    setupSynth();
+    // end is reached, generate more tiles
+    if (sequenceLength >= Math.ceil(numTiles / 2)) {
+      setSequenceLength(numberOfTiles + 1);
 
-    return () => {
-      disposeSynth();
-    };
-  }, []);
+      newSequence = generateRandomSequence(
+        numberOfTiles + 1,
+        numberOfTiles + 1
+      );
 
-  const handlePlay = async () => {
-    playNote();
-  };
+      setNumberOfTiles((prevNumTiles) => prevNumTiles + 1);
+      // otherwise increase sequence length only
+    } else {
+      newSequence = generateRandomSequence(sequenceLength + 1, numberOfTiles);
+      setSequenceLength((prevSeqLength) => prevSeqLength + 1);
+    }
+
+    setCurrentSequence(newSequence);
+    setSequenceIndex(0);
+    setIsTileFlashing(true);
+  }
+
+  function handleTileClick() {
+    // TODO: make an audio mute button
+
+    if (index === currentSequence[sequenceIndex]) {
+      playNote(index, numberOfTiles);
+
+      setScore((prevScore) => prevScore + 1);
+
+      // if we clicked the last tile in the sequence, go next
+      if (sequenceIndex === currentSequence.length - 1) {
+        incrementSequence();
+      } else {
+        setSequenceIndex((prevIndex) => prevIndex + 1);
+      }
+    } else {
+      try {
+        playWrong();
+        console.log("You clicked tile:", index + 1 + " Wrong!");
+        setIsGameOver(true);
+      } catch (err) {
+        console.error("Failure finding wrong tile audio");
+      }
+    }
+  }
 
   return (
-    <div>
-      {isReady ? (
-        <button onClick={handlePlay}>Play Sound</button>
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+    <div
+      key={id}
+      className={"tile"}
+      style={tileColor}
+      onClick={handleTileClick}
+    ></div>
   );
 };
 
