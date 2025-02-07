@@ -17,7 +17,7 @@ const correctSoundFiles = [
 
 const wrongSound = new Howl({
   src: [wrong_01],
-  volume: 0.1,
+  volume: 0.3,
 });
 
 const correctSoundsMap = correctSoundFiles.map(
