@@ -1,3 +1,6 @@
+### Try it out now! 
+Github Pages Deplyment: [https://tab-games.github.io/ReactMemoryGame/](https://tab-games.github.io/ReactMemoryGame/)
+
 ### How To Install:
 
 1. Go to terminal > `npm install`
